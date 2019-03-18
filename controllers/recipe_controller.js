@@ -1,6 +1,11 @@
 const Recipe = require('../models/recipe');
 
 module.exports = {
+	getAll: function(req, res, next) {
+		Recipe.find({})
+			.then(recipes => res.send(recipes))
+			.catch(next);
+	},
 	create: function(req, res, next) {
 		const recipeProps = req.body;
 		Recipe.create(recipeProps)
