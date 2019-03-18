@@ -4,7 +4,8 @@
   "description": "Open Recipe Data Base Web App",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_ENV=test nodemon --exec 'mocha --recursive -R min'",
+    "dev": "nodemon index.js"
   },
   "keywords": [
     "Recipe"
@@ -15,5 +16,9 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "mongoose": "^5.4.19"
+  },
+  "devDependencies": {
+    "mocha": "^6.0.2",
+    "supertest": "^4.0.2"
   }
 }
