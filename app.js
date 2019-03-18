@@ -6,6 +6,7 @@ const app = express();
 
 if (process.env.NODE_ENV !== 'test') {
 	mongoose.connect('mongodb://localhost:27017/recipe', { useNewUrlParser: true });
+	mongoose.set('useFindAndModify', false);
 }
 
 //define middleware

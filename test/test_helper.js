@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 //before the test runs connect to the db
 before(done => {
 	mongoose.connect('mongodb://localhost:27017/recipe_test', { useNewUrlParser: true });
+	mongoose.set('useFindAndModify', false);
 	mongoose.connection
 		.once('open', () => done())
 		.on('error', err => {
