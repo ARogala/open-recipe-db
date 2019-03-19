@@ -16,6 +16,12 @@ const RecipeSchema = new Schema({
 		type: String,
 		required: true
 	},
+	starRating: {
+		type: Number,
+		required: true,
+		min: 1,
+		max: 5
+	},
 	contributor: {
 		type: String,
 		required: true
