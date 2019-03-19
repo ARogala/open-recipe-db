@@ -6,6 +6,13 @@ module.exports = {
 			.then(recipes => res.send(recipes))
 			.catch(next);
 	},
+	getFiltered: function(req, res, next) {
+		const query = Recipe.find(getConditions(req.params)[0]).sort(getConditions(req.params)[1]);
+
+		Promise.all([query, Recipe.find(getConditions(req.params)[0]).countDocuments()])
+			.then(results => res.send({ all: results[0], count: results[1] }))
+			.catch(next);
+	},
 	create: function(req, res, next) {
 		const recipeProps = req.body;
 		Recipe.create(recipeProps)
@@ -27,3 +34,27 @@ module.exports = {
 			.catch(next);
 	}
 };
+
+function getConditions(params) {
+	let filterConditions = {};
+	let sortConditions = {};
+	if (params.category !== 'undefined') {
+		filterConditions.category = params.category;
+	}
+	if (params.subCategory !== 'undefined') {
+		filterConditions.subCategory = params.subCategory;
+	}
+	if (params.difficulty !== 'undefined') {
+		filterConditions.difficulty = params.difficulty;
+	}
+	if (params.sortBy === 'starRating') {
+		sortConditions.starRating = -1;
+	}
+	if (params.sortBy === 'date') {
+		sortConditions.date = -1;
+	}
+	if (params.sortBy === 'totalTime') {
+		sortConditions.totalTime = 1;
+	}
+	return [filterConditions, sortConditions];
+}
