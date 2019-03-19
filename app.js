@@ -8,7 +8,9 @@ if (process.env.NODE_ENV !== 'test') {
 	mongoose.connect('mongodb://localhost:27017/recipe', { useNewUrlParser: true });
 	mongoose.set('useFindAndModify', false);
 	mongoose.connection
-		.once('open', () => console.log('connected to db'))
+		.once('open', () => {
+			console.log('connected to db');
+		})
 		.on('error', err => {
 			console.warn('Warning', err);
 		});
