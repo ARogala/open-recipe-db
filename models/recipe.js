@@ -36,16 +36,46 @@ const RecipeSchema = new Schema({
 		required: true
 	},
 	prepTime: {
-		type: String,
-		required: true
+		hours: {
+			type: Number,
+			min: 0,
+			max: 24,
+			required: true
+		},
+		minutes: {
+			type: Number,
+			min: 0,
+			max: 60,
+			required: true
+		}
 	},
 	cookTime: {
-		type: String,
-		required: true
+		hours: {
+			type: Number,
+			min: 0,
+			max: 24,
+			required: true
+		},
+		minutes: {
+			type: Number,
+			min: 0,
+			max: 60,
+			required: true
+		}
 	},
 	totalTime: {
-		type: String,
-		required: true
+		hours: {
+			type: Number,
+			min: 0,
+			max: 24,
+			required: true
+		},
+		minutes: {
+			type: Number,
+			min: 0,
+			max: 60,
+			required: true
+		}
 	},
 	ingredients: {
 		type: [String],
