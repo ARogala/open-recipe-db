@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+.loader {
+	p {
+		text-align: center;
+	}
+	
+	&__div {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
+
+// button styles for all app buttons. I know think components not inheritance
+// but this is too easy 
+.appBtnContainer {
+	text-align: center;
+	margin: 5px;
+}
+.appBtn {
+	background-color: #4CAF50; /* Green */
+	border: none;
+	border-radius:  $border-radius-xl;
+	color: white;
+	padding: 15px 32px;
+	font-size: $huge-font-size;
+	font-family: $font-family;
+}
+
+.appBtn:focus {
+	outline: 2px solid blue;
+}
+
+.appBtn:hover {
+	cursor: pointer;
+	transform: scale(1.05);
+}
+
+.App {
+	max-width: $max-width;
+	margin: auto;
+	padding: 10px;
+}
+
+.nav {
+	text-align: center;
+	height: 50px;
+
+	&__link {
+		text-decoration: none;
+		color: blue;
+		font-weight: bold;
+		padding: 10px;
+		line-height: 50px;
+	}
+
+	&__link:hover {
+		background: black;
+		color: white;
+	}
+
+	&__link:focus {
+		background: black;
+		color: white;
+	}
+}
+
+.header {
+	text-align: center;
+	border-bottom: 2px solid black;
+	
+	&__img {
+		width: 100px;
+		height: 100px;
+	}
+}
