@@ -4,8 +4,12 @@
   "description": "Open Recipe Data Base Web App",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test nodemon --exec 'mocha --recursive -R min'",
-    "dev": "nodemon index.js"
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+    "test": "NODE_ENV=test nodemon --exec 'mocha --recursive -R min'"
   },
   "keywords": [
     "Recipe"
@@ -18,6 +22,7 @@
     "mongoose": "^5.4.19"
   },
   "devDependencies": {
+    "concurrently": "^4.1.0",
     "faker": "^4.1.0",
     "mocha": "^6.0.2",
     "supertest": "^4.0.2"
