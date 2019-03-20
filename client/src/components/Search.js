@@ -37,10 +37,24 @@ class Search extends React.Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		console.log(this.state.category);
-		console.log(this.state.subCategory);
-		console.log(this.state.difficulty);
-		console.log(this.state.sortBy);
+		const category = this.state.category;
+		const subCategory = this.state.subCategory;
+		const difficulty = this.state.difficulty;
+		const sortBy = this.state.sortBy;
+		console.log(`/api/recipe/${category}/${subCategory}/${difficulty}/${sortBy}`);
+		fetch(`/api/recipe/${category}/${subCategory}/${difficulty}/${sortBy}`)
+			.then(res => res.json())
+			.then(
+				result => {
+					console.log(result);
+				},
+				// Note: it's important to handle errors here
+				// instead of a catch() block so that we don't swallow
+				// exceptions from actual bugs in components.
+				error => {
+					console.log(error);
+				}
+			);
 	}
 
 	handleFormReset() {
