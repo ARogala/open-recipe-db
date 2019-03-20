@@ -21,8 +21,7 @@ mongoose.connection
 					Recipe.insertMany(recipes)
 						.then(() => console.log('recipes added to db'))
 						.catch(e => console.log(e));
-				}
-				else if(drop) {
+				} else if (drop) {
 					dropDB();
 				}
 			})
@@ -93,16 +92,11 @@ function fillIngredients() {
 	return ingredients;
 }
 
-const difficulty = ['easy', 'medium', 'hard', 'pro chef'];
+const difficulty = ['Easy', 'Medium', 'Hard', 'Pro Chef'];
 
 const category = [
 	'Appetizers',
 	'Beverages',
-	'Soups',
-	'Stews & Chili',
-	'Pasta, Sauces, & Noodles',
-	'Salad & Dressings',
-	'Grilling',
 	'Sides',
 	'Main Dishes',
 	'Breakfast',
@@ -110,10 +104,16 @@ const category = [
 	'Brunch',
 	'Desserts',
 	'Breads',
-	'Slow Cooker & Pressure Cooker',
+	'Soups',
+	'Stews & Chili',
+	'Pasta, Sauces, & Noodles',
+	'Salad & Dressings',
+	'Grilling',
+	'Smoked',
 	'Burgers',
 	'Sandwiches',
 	'Pizza',
+	'Slow & Pressure Cooker',
 	'Skillet & Stir-Fries',
 	'Oven Baked & Broiled',
 	'Beans, Grains, & Rice',
@@ -122,8 +122,8 @@ const category = [
 
 const subCategory = [
 	'Diet',
-	'Slow Cooker & Pressure Cooker',
 	'Meatless & Vegan',
+	'Slow & Pressure Cooker',
 	'Poultry',
 	'Beef',
 	'Pork',
@@ -137,10 +137,10 @@ const subCategory = [
 	'Cookies & Biscuits',
 	'Cakes & Cupcakes',
 	'Custards & Puddings',
-	'Frozen',
 	'Pies, Tarts, Cobblers, & Crisp',
 	'Chocolates & Candies',
 	'Pastries',
+	'Frozen',
 	'Other'
 ];
 

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
+import Search from './Search';
+import Results from './Results';
 import About from './About';
 
 import logo from '../images/logo.svg';
@@ -31,7 +33,14 @@ class App extends Component {
                     <img className="header__img" src={logo} alt="logo" />
                 </header>
                 <main role="main">
-                    <Route exact path="/" render={() => <div>HOME</div>} />
+                    <Route exact path="/" render={() => {
+                        return (
+                            <div>
+                                <Search />
+                                <Results />
+                            </div>
+                        );
+                    }} />
                     <Route path="/about" render={() => <About />} />
                 </main>
             </div>
