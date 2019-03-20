@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { changeDummyData } from '../redux/actions';
 
 class Search extends React.Component {
 	constructor(props) {
@@ -69,6 +72,14 @@ class Search extends React.Component {
 	render() {
 		return (
 			<div>
+				<button
+					onClick={() => {
+						console.log(this.props.dummyReducer);
+						this.props.changeDummyData();
+					}}
+				>
+					Redux
+				</button>
 				<form className="search" onSubmit={e => this.handleSubmit(e)}>
 					<fieldset>
 						<legend>Search Recipes Database</legend>
@@ -179,4 +190,17 @@ class Search extends React.Component {
 	}
 }
 
-export default Search;
+const mapStateToProps = state => {
+	return {
+		dummyReducer: state.dummyReducer
+	};
+};
+
+const mapDispatchToProps = {
+	changeDummyData: changeDummyData
+};
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Search);
