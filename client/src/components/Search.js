@@ -57,7 +57,6 @@ class Search extends React.Component {
 	}
 
 	render() {
-		console.log('Recipes: ', this.props.recipes);
 		return (
 			<div>
 				<button className="appBtn" type="button" onClick={() => this.props.getRandomRecipes()}>
@@ -173,18 +172,12 @@ class Search extends React.Component {
 	}
 }
 
-const mapStateToProps = state => {
-	return {
-		recipes: state.recipes,
-	};
-};
-
 const mapDispatchToProps = {
 	getFilteredRecipes: getFilteredRecipes,
 	getRandomRecipes: getRandomRecipes
 };
 
 export default connect(
-	mapStateToProps,
+	null,
 	mapDispatchToProps
 )(Search);
