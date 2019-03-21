@@ -9,7 +9,6 @@ import About from './About';
 import logo from '../images/logo.svg';
 
 class App extends Component {
-
     render() {
         return (
             <div className="App">
@@ -21,9 +20,6 @@ class App extends Component {
                         About
                     </Link>
                     <Link to="#" className="nav__link">
-                        Random Recipe
-                    </Link>
-                    <Link to="#" className="nav__link">
                         Create Recipe
                     </Link>
                 </nav>
@@ -33,14 +29,18 @@ class App extends Component {
                     <img className="header__img" src={logo} alt="logo" />
                 </header>
                 <main role="main">
-                    <Route exact path="/" render={() => {
-                        return (
-                            <div>
-                                <Search />
-                                <Results />
-                            </div>
-                        );
-                    }} />
+                    <Route
+                        exact
+                        path="/"
+                        render={() => {
+                            return (
+                                <div>
+                                    <Search />
+                                    <Results />
+                                </div>
+                            );
+                        }}
+                    />
                     <Route path="/about" render={() => <About />} />
                 </main>
             </div>
@@ -49,7 +49,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-
-

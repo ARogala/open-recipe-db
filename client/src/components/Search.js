@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getFilteredRecipes } from '../redux/actions';
+import { getFilteredRecipes, getRandomRecipes } from '../redux/actions';
 
 class Search extends React.Component {
 	constructor(props) {
@@ -57,9 +57,13 @@ class Search extends React.Component {
 	}
 
 	render() {
-		console.log(this.props.filteredRecipes);
+		console.log('filteredRecipes: ', this.props.filteredRecipes);
+		console.log('randomRecipes: ', this.props.randomRecipes);
 		return (
 			<div>
+				<button className="appBtn" type="button" onClick={() => this.props.getRandomRecipes()}>
+					Random Recipes
+				</button>
 				<form className="search" onSubmit={e => this.handleSubmit(e)}>
 					<fieldset>
 						<legend>Search Recipes Database</legend>
@@ -172,12 +176,14 @@ class Search extends React.Component {
 
 const mapStateToProps = state => {
 	return {
-		filteredRecipes: state.filteredRecipes
+		filteredRecipes: state.filteredRecipes,
+		randomRecipes: state.randomRecipes
 	};
 };
 
 const mapDispatchToProps = {
-	getFilteredRecipes: getFilteredRecipes
+	getFilteredRecipes: getFilteredRecipes,
+	getRandomRecipes: getRandomRecipes
 };
 
 export default connect(

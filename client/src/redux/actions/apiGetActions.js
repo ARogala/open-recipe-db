@@ -1,6 +1,13 @@
 import throttle from 'lodash/throttle';
 
-import { GET_FILTERED_RECIPES, GET_FILTERED_RECIPES_SUCCESS, GET_FILTERED_RECIPES_ERROR } from './types';
+import {
+	GET_FILTERED_RECIPES,
+	GET_FILTERED_RECIPES_SUCCESS,
+	GET_FILTERED_RECIPES_ERROR,
+	GET_RANDOM_RECIPES,
+	GET_RANDOM_RECIPES_SUCCESS,
+	GET_RANDOM_RECIPES_ERROR
+} from './types';
 
 /*5sec throttle
 define the throttled fetch outside the action creator otherwise
@@ -58,3 +65,42 @@ export const getFilteredRecipes = (category, subCategory, difficulty, sortBy) =>
 	};
 };
 
+const randomRecipes = throttle(dispatch => {
+	fetch(`/api/recipe/random`)
+		.then(res => res.json())
+		.then(
+			result => {
+				dispatch({
+					type: GET_RANDOM_RECIPES_SUCCESS,
+					payload: {
+						result: result,
+						loaded: true,
+						btnClicked: false
+					}
+				});
+			},
+			error => {
+				dispatch({
+					type: GET_RANDOM_RECIPES_ERROR,
+					payload: {
+						error: error,
+						loaded: true,
+						btnClicked: false
+					}
+				});
+			}
+		);
+}, 5000);
+
+export const getRandomRecipes = () => {
+	return dispatch => {
+		dispatch({
+			type: GET_RANDOM_RECIPES,
+			payload: {
+				loaded: false,
+				btnClicked: true
+			}
+		});
+		return randomRecipes(dispatch);
+	};
+};
