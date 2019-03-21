@@ -8,6 +8,11 @@ module.exports = {
 			.then(results => res.send({ all: results[0], count: results[1] }))
 			.catch(next);
 	},
+	getById: function(req, res, next) {
+		Recipe.find({_id: req.params.id})
+			.then(recipe => res.send(recipe))
+			.catch(next);
+	},
 	getRandom: function(req, res, next) {
 		Recipe.aggregate([{ $sample: { size: 10 } }])
 			.then(recipes => res.send({ all: recipes, count: 10 }))
