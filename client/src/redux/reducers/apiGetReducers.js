@@ -8,11 +8,10 @@ import {
 } from '../actions/types';
 
 const initialState = {
-	filteredRecipes: { error: null, loaded: false, btnClicked: false, recipes: null },
-	randomRecipes: { error: null, loaded: false, btnClicked: false, recipes: null }
+	recipes: { error: null, loaded: false, btnClicked: false, recipes: null }
 };
 
-export const filteredRecipes = (filteredRecipes = initialState.filteredRecipes, action) => {
+export const recipes = (recipes = initialState.recipes, action) => {
 	switch (action.type) {
 		case GET_FILTERED_RECIPES:
 			return {
@@ -35,13 +34,6 @@ export const filteredRecipes = (filteredRecipes = initialState.filteredRecipes, 
 				btnClicked: action.payload.btnClicked,
 				recipes: null
 			};
-		default:
-			return filteredRecipes;
-	}
-};
-
-export const randomRecipes = (randomRecipes = initialState.randomRecipes, action) => {
-	switch (action.type) {
 		case GET_RANDOM_RECIPES:
 			return {
 				error: null,
@@ -64,6 +56,6 @@ export const randomRecipes = (randomRecipes = initialState.randomRecipes, action
 				recipes: null
 			};
 		default:
-			return randomRecipes;
+			return recipes;
 	}
 };

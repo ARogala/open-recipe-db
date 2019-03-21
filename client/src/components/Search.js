@@ -57,8 +57,7 @@ class Search extends React.Component {
 	}
 
 	render() {
-		console.log('filteredRecipes: ', this.props.filteredRecipes);
-		console.log('randomRecipes: ', this.props.randomRecipes);
+		console.log('Recipes: ', this.props.recipes);
 		return (
 			<div>
 				<button className="appBtn" type="button" onClick={() => this.props.getRandomRecipes()}>
@@ -176,8 +175,7 @@ class Search extends React.Component {
 
 const mapStateToProps = state => {
 	return {
-		filteredRecipes: state.filteredRecipes,
-		randomRecipes: state.randomRecipes
+		recipes: state.recipes,
 	};
 };
 

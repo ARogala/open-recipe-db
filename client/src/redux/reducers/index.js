@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
-import { filteredRecipes, randomRecipes } from './apiGetReducers';
+import { recipes } from './apiGetReducers';
 
 export default combineReducers({
-	filteredRecipes: filteredRecipes,
-	randomRecipes: randomRecipes
+	recipes: recipes
 });
