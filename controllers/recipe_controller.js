@@ -2,15 +2,22 @@ const Recipe = require('../models/recipe');
 
 module.exports = {
 	getAll: function(req, res, next) {
-		Recipe.find({})
-			.then(recipes => res.send(recipes))
+		const query = Recipe.find({}).sort({ starRating: -1 });
+
+		Promise.all([query, Recipe.find({}).countDocuments()])
+			.then(results => res.send({ recipes: results[0], count: results[1] }))
+			.catch(next);
+	},
+	getRandom: function(req, res, next) {
+		Recipe.aggregate([{ $sample: { size: 1 } }])
+			.then(recipe => res.send({ recipes: recipe, count: 1 }))
 			.catch(next);
 	},
 	getFiltered: function(req, res, next) {
 		const query = Recipe.find(getConditions(req.params)[0]).sort(getConditions(req.params)[1]);
 
 		Promise.all([query, Recipe.find(getConditions(req.params)[0]).countDocuments()])
-			.then(results => res.send({ all: results[0], count: results[1] }))
+			.then(results => res.send({ recipes: results[0], count: results[1] }))
 			.catch(next);
 	},
 	create: function(req, res, next) {
