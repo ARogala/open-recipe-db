@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import Search from './Search';
 import Results from './Results';
+import Recipe from './Recipe';
 import About from './About';
 
 import logo from '../images/logo.svg';
@@ -41,6 +42,7 @@ class App extends Component {
                             );
                         }}
                     />
+                    <Route path="/recipe/:id" component={Recipe} />
                     <Route path="/about" render={() => <About />} />
                 </main>
             </div>

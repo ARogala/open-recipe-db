@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
 
@@ -29,7 +30,9 @@ class Results extends React.Component {
 			return (
 				<ul key={index}>
 					<li>
-						{`Title: ${recipe.name}`}
+						<Link to={`/recipe/${recipe._id}`}>
+							{`Title: ${recipe.name}`}
+						</Link>
 						<ul>
 							<li>{`Contributor: ${recipe.contributor}`}</li>
 							<li>{`Category: ${recipe.category}`}</li>
