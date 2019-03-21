@@ -1,14 +1,33 @@
-import {CHANGE_STRING} from '../actions/types';
+import { GET_FILTERED_RECIPES, GET_FILTERED_RECIPES_SUCCESS, GET_FILTERED_RECIPES_ERROR } from '../actions/types';
 
 const initialState = {
-	dummyReducer: 'just boiler plate redux text'
+	filteredRecipes: { error: null, loaded: false, btnClicked: false, recipes: null }
 };
 
-export const dummyReducer = (dummyReducer = initialState.dummyReducer, action) => {
+export const filteredRecipes = (filteredRecipes = initialState.filteredRecipes, action) => {
 	switch (action.type) {
-		case CHANGE_STRING:
-			return action.payload;
+		case GET_FILTERED_RECIPES:
+			return {
+				error: null,
+				loaded: action.payload.loaded,
+				btnClicked: action.payload.btnClicked,
+				recipes: null
+			};
+		case GET_FILTERED_RECIPES_SUCCESS:
+			return {
+				error: null,
+				loaded: action.payload.loaded,
+				btnClicked: action.payload.btnClicked,
+				recipes: action.payload.result
+			};
+		case GET_FILTERED_RECIPES_ERROR:
+			return {
+				error: action.payload.error,
+				loaded: action.payload.loaded,
+				btnClicked: action.payload.btnClicked,
+				recipes: null
+			};
 		default:
-			return dummyReducer;
+			return filteredRecipes;
 	}
 };

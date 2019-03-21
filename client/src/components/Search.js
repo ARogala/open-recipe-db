@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { changeDummyData } from '../redux/actions';
+import { getFilteredRecipes } from '../redux/actions';
 
 class Search extends React.Component {
 	constructor(props) {
@@ -44,20 +44,7 @@ class Search extends React.Component {
 		const subCategory = this.state.subCategory;
 		const difficulty = this.state.difficulty;
 		const sortBy = this.state.sortBy;
-		console.log(`/api/recipe/${category}/${subCategory}/${difficulty}/${sortBy}`);
-		fetch(`/api/recipe/${category}/${subCategory}/${difficulty}/${sortBy}`)
-			.then(res => res.json())
-			.then(
-				result => {
-					console.log(result);
-				},
-				// Note: it's important to handle errors here
-				// instead of a catch() block so that we don't swallow
-				// exceptions from actual bugs in components.
-				error => {
-					console.log(error);
-				}
-			);
+		this.props.getFilteredRecipes(category, subCategory, difficulty, sortBy);
 	}
 
 	handleFormReset() {
@@ -70,16 +57,9 @@ class Search extends React.Component {
 	}
 
 	render() {
+		console.log(this.props.filteredRecipes);
 		return (
 			<div>
-				<button
-					onClick={() => {
-						console.log(this.props.dummyReducer);
-						this.props.changeDummyData();
-					}}
-				>
-					Redux
-				</button>
 				<form className="search" onSubmit={e => this.handleSubmit(e)}>
 					<fieldset>
 						<legend>Search Recipes Database</legend>
@@ -192,12 +172,12 @@ class Search extends React.Component {
 
 const mapStateToProps = state => {
 	return {
-		dummyReducer: state.dummyReducer
+		filteredRecipes: state.filteredRecipes
 	};
 };
 
 const mapDispatchToProps = {
-	changeDummyData: changeDummyData
+	getFilteredRecipes: getFilteredRecipes
 };
 
 export default connect(

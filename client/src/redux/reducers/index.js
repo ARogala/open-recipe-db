@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
-import { dummyReducer } from './apiGetReducers';
-
+import { filteredRecipes } from './apiGetReducers';
 
 export default combineReducers({
-	dummyReducer: dummyReducer
-})
+	filteredRecipes: filteredRecipes
+});
