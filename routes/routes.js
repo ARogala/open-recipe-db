@@ -1,5 +1,7 @@
 const RecipeController = require('../controllers/recipe_controller');
-
+//routing order matters
+//https://stackoverflow.com/questions/17735610/node-js-express-route-naming-and-ordering-how-is-precedence-determined/17735823
+//https://stackoverflow.com/questions/32603818/order-of-router-precedence-in-express-js
 module.exports = app => {
 	app.get('/api/recipe/all', RecipeController.getAll);
 

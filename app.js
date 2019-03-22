@@ -22,7 +22,7 @@ routes(app);
 //err will be defined if previous middleware throws an err (so if routes throws err)
 //next is a function that gets called to run the next middleware in the chain
 app.use((err, req, res, next) => {
-	res.status(422).send({ error: err._message });
+	res.status(422).send({ error: err.message });
 });
 
 module.exports = app;
