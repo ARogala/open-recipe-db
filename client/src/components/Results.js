@@ -30,9 +30,7 @@ class Results extends React.Component {
 			return (
 				<ul key={index}>
 					<li>
-						<Link to={`/recipe/${recipe._id}`}>
-							{`Title: ${recipe.name}`}
-						</Link>
+						<Link to={`/recipe/${recipe._id}`}>{`Title: ${recipe.name}`}</Link>
 						<ul>
 							<li>{`Contributor: ${recipe.contributor}`}</li>
 							<li>{`Category: ${recipe.category}`}</li>
@@ -62,7 +60,11 @@ class Results extends React.Component {
 			return this.renderError();
 		} else if (loaded === false && btnClicked === true) {
 			return this.renderLoader();
-		} else if (result.recipes !== null && loaded === true) {
+		} else if (
+			result.recipes !== null &&
+			loaded === true &&
+			(Object.keys(result.recipes).length !== 0 && result.recipes.constructor === Object)
+		) {
 			return (
 				<div>
 					<p>Total Results: {result.recipes.count}</p>
