@@ -6,7 +6,10 @@ import {
 	GET_FILTERED_RECIPES_ERROR,
 	GET_RANDOM_RECIPES,
 	GET_RANDOM_RECIPES_SUCCESS,
-	GET_RANDOM_RECIPES_ERROR
+	GET_RANDOM_RECIPES_ERROR,
+	GET_RECIPE_BYID,
+	GET_RECIPE_BYID_SUCCESS,
+	GET_RECIPE_BYID_ERROR
 } from './types';
 
 /*5sec throttle
@@ -102,5 +105,38 @@ export const getRandomRecipes = () => {
 			}
 		});
 		return randomRecipes(dispatch);
+	};
+};
+
+export const getRecipeById = (id) => {
+	return dispatch => {
+		dispatch({
+			type: GET_RECIPE_BYID,
+			payload : {
+				loaded: false
+			}
+		});
+		fetch(`/api/recipe/${id}`)
+		.then(res => res.json())
+		.then(
+			result => {
+				dispatch({
+					type: GET_RECIPE_BYID_SUCCESS,
+					payload: {
+						result: result,
+						loaded: true
+					}
+				});
+			},
+			error => {
+				dispatch({
+					type: GET_RECIPE_BYID_ERROR,
+					payload: {
+						error: error,
+						loaded: true
+					}
+				});
+			}
+		);
 	};
 };
