@@ -51,28 +51,21 @@ class Results extends React.Component {
 
 	render() {
 		console.log('Recipes: ', this.props.recipes);
-		const result = this.props.recipes;
-
-		const error = result.error;
-		const loaded = result.loaded;
-		const btnClicked = result.btnClicked;
-		if (error) {
+		const { error, loaded, btnClicked, recipes } = this.props.recipes;
+		//api will send an error obj on recipes if server error occurs
+		if (error || recipes.error) {
 			return this.renderError();
 		} else if (loaded === false && btnClicked === true) {
 			return this.renderLoader();
-		} else if (
-			result.recipes !== null &&
-			loaded === true &&
-			(Object.keys(result.recipes).length !== 0 && result.recipes.constructor === Object)
-		) {
+		} else if (loaded === true && recipes.all) {
 			return (
 				<div>
-					<p>Total Results: {result.recipes.count}</p>
-					{this.renderRecipeList(result.recipes.all)}
+					<p>Total Results: {recipes.count}</p>
+					{this.renderRecipeList(recipes.all)}
 				</div>
 			);
 		} else {
-			return <div>Query the Data base for results</div>;
+			return <div>Search the database or get some random recipes.</div>;
 		}
 	}
 }

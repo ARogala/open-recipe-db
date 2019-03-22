@@ -8,7 +8,7 @@ import {
 } from '../actions/types';
 
 const initialState = {
-	recipes: { error: null, loaded: false, btnClicked: false, recipes: null }
+	recipes: { error: null, loaded: false, btnClicked: false, recipes: {} }
 };
 
 export const recipes = (recipes = initialState.recipes, action) => {
@@ -18,7 +18,7 @@ export const recipes = (recipes = initialState.recipes, action) => {
 				error: null,
 				loaded: action.payload.loaded,
 				btnClicked: action.payload.btnClicked,
-				recipes: null
+				recipes: {}
 			};
 		case GET_FILTERED_RECIPES_SUCCESS:
 			return {
@@ -32,14 +32,14 @@ export const recipes = (recipes = initialState.recipes, action) => {
 				error: action.payload.error,
 				loaded: action.payload.loaded,
 				btnClicked: action.payload.btnClicked,
-				recipes: null
+				recipes: {}
 			};
 		case GET_RANDOM_RECIPES:
 			return {
 				error: null,
 				loaded: action.payload.loaded,
 				btnClicked: action.payload.btnClicked,
-				recipes: null
+				recipes: {}
 			};
 		case GET_RANDOM_RECIPES_SUCCESS:
 			return {
@@ -53,7 +53,7 @@ export const recipes = (recipes = initialState.recipes, action) => {
 				error: action.payload.error,
 				loaded: action.payload.loaded,
 				btnClicked: action.payload.btnClicked,
-				recipes: null
+				recipes: {}
 			};
 		default:
 			return recipes;
