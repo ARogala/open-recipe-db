@@ -32,32 +32,53 @@ class Recipe extends React.Component {
 		);
 	};
 	renderRecipe = recipe => {
-		let recipeDOM = recipe.map((recipe, index) => {
-			return (
-				<ul key={index}>
-					<li>
-						{`Title: ${recipe.name}`}
-						<ul>
-							<li>{`Contributor: ${recipe.contributor}`}</li>
-							<li>{`Category: ${recipe.category}`}</li>
-							<li>{`SubCategory: ${recipe.subCategory}`}</li>
-							<li>{`Difficulty: ${recipe.difficulty}`}</li>
-							<li>{`Total Time: ${recipe.totalTime.hours} hours and ${
-								recipe.totalTime.minutes
-							} minutes`}</li>
-							<li>{`Rating: ${recipe.starRating}`}</li>
-							<li>{`Date: ${recipe.date}`}</li>
-						</ul>
-					</li>
-				</ul>
-			);
+		let ingredients = recipe[0].ingredients.map((ingredient, index) => {
+			return <li key={index}>{ingredient}</li>;
 		});
+		let recipeDOM = (
+			<ul>
+				<li>
+					{`Title: ${recipe[0].name}`}
+					<ul>
+						<li>{`Contributor: ${recipe[0].contributor}`}</li>
+						<li>{`Category: ${recipe[0].category}`}</li>
+						<li>{`SubCategory: ${recipe[0].subCategory}`}</li>
+						<li>{`Difficulty: ${recipe[0].difficulty}`}</li>
+						<li>{`Prep Time: ${recipe[0].prepTime.hours} hours and ${
+							recipe[0].prepTime.minutes
+						} minutes`}</li>
+						<li>{`Cook Time: ${recipe[0].cookTime.hours} hours and ${
+							recipe[0].cookTime.minutes
+						} minutes`}</li>
+						<li>{`Total Time: ${recipe[0].totalTime.hours} hours and ${
+							recipe[0].totalTime.minutes
+						} minutes`}</li>
+						<li>{`Rating: ${recipe[0].starRating}`}</li>
+						<li>{`Date: ${recipe[0].date}`}</li>
+						<li>
+							Ingredients:
+							<ul>{ingredients}</ul>
+						</li>
+						<li>
+							Instructions:
+							<ul>
+								<p>{recipe[0].instructions}</p>
+							</ul>
+						</li>
+						<li>
+							Notes:
+							<ul>
+								<p>{recipe[0].notes}</p>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		);
 		return recipeDOM;
 	};
 	render() {
-		console.log(this.props.recipe);
 		const { error, loaded, recipe } = this.props.recipe;
-		// console.log(recipe);
 		//api will send an error obj on recipes if server error occurs
 		if (error || recipe.error) {
 			return this.renderError();
