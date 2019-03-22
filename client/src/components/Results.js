@@ -28,22 +28,18 @@ class Results extends React.Component {
 	renderRecipeList = recipes => {
 		let recipesList = recipes.map((recipe, index) => {
 			return (
-				<ul key={index}>
-					<li>
-						<Link to={`/recipe/${recipe._id}`}>{`Title: ${recipe.name}`}</Link>
-						<ul>
-							<li>{`Contributor: ${recipe.contributor}`}</li>
-							<li>{`Category: ${recipe.category}`}</li>
-							<li>{`SubCategory: ${recipe.subCategory}`}</li>
-							<li>{`Difficulty: ${recipe.difficulty}`}</li>
-							<li>{`Total Time: ${recipe.totalTime.hours} hours and ${
-								recipe.totalTime.minutes
-							} minutes`}</li>
-							<li>{`Rating: ${recipe.starRating}`}</li>
-							<li>{`Date: ${recipe.date}`}</li>
-						</ul>
-					</li>
-				</ul>
+				<li key={index}>
+					<Link to={`/recipe/${recipe._id}`}>{`Title: ${recipe.name}`}</Link>
+					<ul>
+						<li>{`Contributor: ${recipe.contributor}`}</li>
+						<li>{`Category: ${recipe.category}`}</li>
+						<li>{`SubCategory: ${recipe.subCategory}`}</li>
+						<li>{`Difficulty: ${recipe.difficulty}`}</li>
+						<li>{`Rating: ${recipe.starRating}`}</li>
+						<li>{`Total Time: ${recipe.totalTime.hours} hours and ${recipe.totalTime.minutes} minutes`}</li>
+						<li>{`Date: ${recipe.date}`}</li>
+					</ul>
+				</li>
 			);
 		});
 		return recipesList;
@@ -61,7 +57,7 @@ class Results extends React.Component {
 			return (
 				<div>
 					<p>Total Results: {recipes.count}</p>
-					{this.renderRecipeList(recipes.all)}
+					<ul>{this.renderRecipeList(recipes.all)}</ul>
 				</div>
 			);
 		} else {

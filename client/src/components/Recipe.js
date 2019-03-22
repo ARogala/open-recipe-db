@@ -44,6 +44,7 @@ class Recipe extends React.Component {
 						<li>{`Category: ${recipe[0].category}`}</li>
 						<li>{`SubCategory: ${recipe[0].subCategory}`}</li>
 						<li>{`Difficulty: ${recipe[0].difficulty}`}</li>
+						<li>{`Rating: ${recipe[0].starRating}`}</li>
 						<li>{`Prep Time: ${recipe[0].prepTime.hours} hours and ${
 							recipe[0].prepTime.minutes
 						} minutes`}</li>
@@ -53,7 +54,6 @@ class Recipe extends React.Component {
 						<li>{`Total Time: ${recipe[0].totalTime.hours} hours and ${
 							recipe[0].totalTime.minutes
 						} minutes`}</li>
-						<li>{`Rating: ${recipe[0].starRating}`}</li>
 						<li>{`Date: ${recipe[0].date}`}</li>
 						<li>
 							Ingredients:
