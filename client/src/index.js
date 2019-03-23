@@ -11,6 +11,7 @@ import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 
 import './styles/main.scss';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const store = createStore(reducers, applyMiddleware(thunk));
 

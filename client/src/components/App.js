@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { ToastContainer } from 'react-toastify';
 import { Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import Search from './Search';
 import Results from './Results';
 import Recipe from './Recipe';
+import CreateRecipe from './CreateRecipe';
 import About from './About';
 
 import logo from '../images/logo.svg';
@@ -20,7 +22,7 @@ class App extends Component {
                     <Link to="/about" className="nav__link">
                         About
                     </Link>
-                    <Link to="#" className="nav__link">
+                    <Link to="/create" className="nav__link">
                         Create Recipe
                     </Link>
                 </nav>
@@ -42,9 +44,11 @@ class App extends Component {
                             );
                         }}
                     />
+                    <Route path='/create' component={CreateRecipe} />
                     <Route path="/recipe/:id" component={Recipe} />
                     <Route path="/about" render={() => <About />} />
                 </main>
+                <ToastContainer />
             </div>
         );
     }
