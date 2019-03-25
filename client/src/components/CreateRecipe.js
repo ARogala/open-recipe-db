@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
 
 import { postRecipe } from '../redux/actions';
@@ -25,8 +27,30 @@ class CreateRecipe extends React.Component {
 		};
 	}
 
+	renderError = () => {
+		return (
+			<div className="recipe">
+				<p>
+					Sorry an error has occured. Perhaps we are cooking too much and went over the api limit! Slow down!
+				</p>
+			</div>
+		);
+	};
+	renderLoader = () => {
+		return (
+			<div className="recipe">
+				<div className="recipe__loader">
+					<div>
+						<p>Uploading Recipes!</p>
+						<Loader type="Puff" color="#00BFFF" height="100" width="100" />
+					</div>
+				</div>
+			</div>
+		);
+	};
+
 	notify = () => {
-		toast.warn('Please fill out all fields', {
+		toast.success('Recipe uploaded successfully!', {
 			position: toast.POSITION.TOP_CENTER
 		});
 	};
@@ -165,13 +189,8 @@ class CreateRecipe extends React.Component {
 			instructions: this.state.instructions,
 			notes: this.state.notes
 		};
-
-		console.log(recipe);
 		this.props.postRecipe(recipe);
-		// if (category === 'undefined' || subCategory === 'undefined' || difficulty === 'undefined') {
-		// 	this.notify();
-		// 	return;
-		// }
+		this.handleFormReset();
 	}
 
 	handleFormReset() {
@@ -194,249 +213,274 @@ class CreateRecipe extends React.Component {
 	}
 
 	render() {
-		console.log(this.props.postRecipeRes)
-		return (
-			<form className="search" onSubmit={e => this.handleSubmit(e)}>
-				<fieldset>
-					<legend>Add a new recipe</legend>
-
-					<label htmlFor="contributor">Contributor:</label>
-					<input
-						type="text"
-						id="contributor"
-						value={this.state.contributor}
-						onChange={e => this.handleContributorChange(e)}
-						required
-					/>
-
-					<label htmlFor="date">Date:</label>
-					<input
-						type="date"
-						id="date"
-						value={this.state.date}
-						onChange={e => this.handleDateChange(e)}
-						required
-					/>
-
-					<label htmlFor="title">Title:</label>
-					<input
-						type="text"
-						id="title"
-						value={this.state.title}
-						onChange={e => this.handleTitleChange(e)}
-						required
-					/>
-
-					<label htmlFor="category">Category:</label>
-					<select
-						className="search__select"
-						id="category"
-						value={this.state.category}
-						onChange={e => this.handleCategoryChange(e)}
-						required
-					>
-						<option value="" disabled>
-							--Choose a Category--
-						</option>
-						<option value="Appetizers">Appetizers</option>
-						<option value="Beverages">Beverages</option>
-						<option value="Sides">Sides</option>
-						<option value="Main Dishes">Main Dishes</option>
-						<option value="Breakfast">Breakfast</option>
-						<option value="Lunch">Lunch</option>
-						<option value="Brunch">Brunch</option>
-						<option value="Desserts">Desserts</option>
-						<option value="Breads">Breads</option>
-						<option value="Soups">Soups</option>
-						<option value="Stews & Chili">Stews & Chili</option>
-						<option value="Pasta, Sauces, & Noodles">Pasta, Sauces, & Noodles</option>
-						<option value="Salad & Dressings">Salad & Dressings</option>
-						<option value="Grilling">Grilling</option>
-						<option value="Smoked">Smoked</option>
-						<option value="Burgers">Burgers</option>
-						<option value="Sandwiches">Sandwiches</option>
-						<option value="Pizza">Pizza</option>
-						<option value="Slow & Pressure Cooker">Slow & Pressure Cooker</option>
-						<option value="Skillet & Stir-Fries">Skillet & Stir-Fries</option>
-						<option value="Oven Baked & Broiled">Oven Baked & Broiled</option>
-						<option value="Beans, Grains, & Rice">Beans, Grains, & Rice</option>
-						<option value="Casseroles">Casseroles</option>
-					</select>
-
-					<label htmlFor="subCategory">SubCategory:</label>
-					<select
-						className="search__select"
-						id="subCategory"
-						value={this.state.subCategory}
-						onChange={e => this.handleSubCategoryChange(e)}
-						required
-					>
-						<option value="" disabled>
-							--Choose a SubCategory--
-						</option>
-						<option value="Diet">Diet</option>
-						<option value="Meatless & Vegan">Meatless & Vegan</option>
-						<option value="Slow & Pressure Cooker">Slow & Pressure Cooker</option>
-						<option value="Poultry">Poultry</option>
-						<option value="Beef">Beef</option>
-						<option value="Pork">Pork</option>
-						<option value="Lamb">Lamb</option>
-						<option value="Duck">Duck</option>
-						<option value="Turkey">Turkey</option>
-						<option value="Sausages">Sausages</option>
-						<option value="Seafood">Seafood</option>
-						<option value="Fruit">Fruit</option>
-						<option value="Vegetables">Vegetables</option>
-						<option value="Cookies & Biscuits">Cookies & Biscuits</option>
-						<option value="Cakes & Cupcakes">Cakes & Cupcakes</option>
-						<option value="Custards & Puddings">Custards & Puddings</option>
-						<option value="Pies, Tarts, Cobblers, & Crisp">Pies, Tarts, Cobblers, & Crisp</option>
-						<option value="Chocolates & Candies">Chocolates & Candies</option>
-						<option value="Pastries">Pastries</option>
-						<option value="Frozen">Frozen</option>
-						<option value="Other">Other</option>
-					</select>
-
-					<label htmlFor="rating">Rating:</label>
-					<select
-						className="search__select"
-						id="rating"
-						value={this.state.rating}
-						onChange={e => this.handleRatingChange(e)}
-						required
-					>
-						<option value="" disabled>
-							--Choose a Rating--
-						</option>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-					</select>
-
-					<label htmlFor="difficulty">Difficulty:</label>
-					<select
-						className="search__select"
-						id="difficulty"
-						value={this.state.difficulty}
-						onChange={e => this.handleDifficultyChange(e)}
-						required
-					>
-						<option value="" disabled>
-							--Choose a Difficulty--
-						</option>
-						<option value="Easy">Easy</option>
-						<option value="Medium">Medium</option>
-						<option value="Hard">Hard</option>
-						<option value="Pro Chef">Pro Chef</option>
-					</select>
-
+		//console.log(this.props.postRecipeRes);
+		const { error, loaded, btnClicked, res } = this.props.postRecipeRes;
+		//console.log(res);
+		//api will send an error obj on res if server error occurs
+		if (error || res.error) {
+			return this.renderError();
+		} else if (loaded === false && btnClicked === true) {
+			return this.renderLoader();
+		} else {
+			return (
+				<form className="search" onSubmit={e => this.handleSubmit(e)}>
+					{res.length === 1 ? this.notify() : null}
+					{res.length === 1 ? (
+						<div>
+							<p>View your recipe!</p>
+							<Link to={`/recipe/${res[0]._id}`}>{`Title: ${res[0].name}`}</Link>
+						</div>
+					) : null}
 					<fieldset>
-						<legend>Prep Time</legend>
-						<label htmlFor="prepHours">Hours:</label>
-						<input
-							type="number"
-							id="prepHours"
-							min="0"
-							max="24"
-							value={this.state.prepHours}
-							onChange={e => this.handlePrepHoursChange(e)}
-							required
-						/>
-						<label htmlFor="prepMinutes">Minutes:</label>
-						<input
-							type="number"
-							id="prepMinutes"
-							min="0"
-							max="60"
-							value={this.state.prepMinutes}
-							onChange={e => this.handlePrepMinutesChange(e)}
-							required
-						/>
-					</fieldset>
+						<legend>Add a new recipe</legend>
 
-					<fieldset>
-						<legend>Cook Time</legend>
-						<label htmlFor="cookHours">Hours:</label>
+						<label htmlFor="contributor">Contributor:</label>
 						<input
-							type="number"
-							id="cookHours"
-							min="0"
-							max="24"
-							value={this.state.cookHours}
-							onChange={e => this.handleCookHoursChange(e)}
+							type="text"
+							id="contributor"
+							value={this.state.contributor}
+							onChange={e => this.handleContributorChange(e)}
 							required
 						/>
-						<label htmlFor="cookMinutes">Minutes:</label>
-						<input
-							type="number"
-							id="cookMinutes"
-							min="0"
-							max="60"
-							value={this.state.cookMinutes}
-							onChange={e => this.handleCookMinutesChange(e)}
-							required
-						/>
-					</fieldset>
 
-					<fieldset>
-						<legend>Ingredients:</legend>
-						{this.state.ingredients.map((ingredient, idx) => {
-							return (
-								<div key={idx}>
-									<input
-										type="text"
-										placeholder={`Ingredient #${idx + 1}`}
-										value={ingredient}
-										onChange={e => this.handleIngredientChange(e, idx)}
-										required
-									/>
-									<button className="appBtn" type="button" onClick={() => this.removeIngredient(idx)}>
-										-
-									</button>
-								</div>
-							);
-						})}
+						<label htmlFor="date">Date:</label>
+						<input
+							type="date"
+							id="date"
+							value={this.state.date}
+							onChange={e => this.handleDateChange(e)}
+							required
+						/>
+
+						<label htmlFor="title">Title:</label>
+						<input
+							type="text"
+							id="title"
+							value={this.state.title}
+							onChange={e => this.handleTitleChange(e)}
+							required
+						/>
+
+						<label htmlFor="category">Category:</label>
+						<select
+							className="search__select"
+							id="category"
+							value={this.state.category}
+							onChange={e => this.handleCategoryChange(e)}
+							required
+						>
+							<option value="" disabled>
+								--Choose a Category--
+							</option>
+							<option value="Appetizers">Appetizers</option>
+							<option value="Beverages">Beverages</option>
+							<option value="Sides">Sides</option>
+							<option value="Main Dishes">Main Dishes</option>
+							<option value="Breakfast">Breakfast</option>
+							<option value="Lunch">Lunch</option>
+							<option value="Brunch">Brunch</option>
+							<option value="Desserts">Desserts</option>
+							<option value="Breads">Breads</option>
+							<option value="Soups">Soups</option>
+							<option value="Stews & Chili">Stews & Chili</option>
+							<option value="Pasta, Sauces, & Noodles">Pasta, Sauces, & Noodles</option>
+							<option value="Salad & Dressings">Salad & Dressings</option>
+							<option value="Grilling">Grilling</option>
+							<option value="Smoked">Smoked</option>
+							<option value="Burgers">Burgers</option>
+							<option value="Sandwiches">Sandwiches</option>
+							<option value="Pizza">Pizza</option>
+							<option value="Slow & Pressure Cooker">Slow & Pressure Cooker</option>
+							<option value="Skillet & Stir-Fries">Skillet & Stir-Fries</option>
+							<option value="Oven Baked & Broiled">Oven Baked & Broiled</option>
+							<option value="Beans, Grains, & Rice">Beans, Grains, & Rice</option>
+							<option value="Casseroles">Casseroles</option>
+						</select>
+
+						<label htmlFor="subCategory">SubCategory:</label>
+						<select
+							className="search__select"
+							id="subCategory"
+							value={this.state.subCategory}
+							onChange={e => this.handleSubCategoryChange(e)}
+							required
+						>
+							<option value="" disabled>
+								--Choose a SubCategory--
+							</option>
+							<option value="Diet">Diet</option>
+							<option value="Meatless & Vegan">Meatless & Vegan</option>
+							<option value="Slow & Pressure Cooker">Slow & Pressure Cooker</option>
+							<option value="Poultry">Poultry</option>
+							<option value="Beef">Beef</option>
+							<option value="Pork">Pork</option>
+							<option value="Lamb">Lamb</option>
+							<option value="Duck">Duck</option>
+							<option value="Turkey">Turkey</option>
+							<option value="Sausages">Sausages</option>
+							<option value="Seafood">Seafood</option>
+							<option value="Fruit">Fruit</option>
+							<option value="Vegetables">Vegetables</option>
+							<option value="Cookies & Biscuits">Cookies & Biscuits</option>
+							<option value="Cakes & Cupcakes">Cakes & Cupcakes</option>
+							<option value="Custards & Puddings">Custards & Puddings</option>
+							<option value="Pies, Tarts, Cobblers, & Crisp">Pies, Tarts, Cobblers, & Crisp</option>
+							<option value="Chocolates & Candies">Chocolates & Candies</option>
+							<option value="Pastries">Pastries</option>
+							<option value="Frozen">Frozen</option>
+							<option value="Other">Other</option>
+						</select>
+
+						<label htmlFor="rating">Rating:</label>
+						<select
+							className="search__select"
+							id="rating"
+							value={this.state.rating}
+							onChange={e => this.handleRatingChange(e)}
+							required
+						>
+							<option value="" disabled>
+								--Choose a Rating--
+							</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+
+						<label htmlFor="difficulty">Difficulty:</label>
+						<select
+							className="search__select"
+							id="difficulty"
+							value={this.state.difficulty}
+							onChange={e => this.handleDifficultyChange(e)}
+							required
+						>
+							<option value="" disabled>
+								--Choose a Difficulty--
+							</option>
+							<option value="Easy">Easy</option>
+							<option value="Medium">Medium</option>
+							<option value="Hard">Hard</option>
+							<option value="Pro Chef">Pro Chef</option>
+						</select>
+
+						<fieldset>
+							<legend>Prep Time</legend>
+							<label htmlFor="prepHours">Hours:</label>
+							<input
+								type="number"
+								id="prepHours"
+								min="0"
+								max="24"
+								value={this.state.prepHours}
+								onChange={e => this.handlePrepHoursChange(e)}
+								required
+							/>
+							<label htmlFor="prepMinutes">Minutes:</label>
+							<input
+								type="number"
+								id="prepMinutes"
+								min="0"
+								max="60"
+								value={this.state.prepMinutes}
+								onChange={e => this.handlePrepMinutesChange(e)}
+								required
+							/>
+						</fieldset>
+
+						<fieldset>
+							<legend>Cook Time</legend>
+							<label htmlFor="cookHours">Hours:</label>
+							<input
+								type="number"
+								id="cookHours"
+								min="0"
+								max="24"
+								value={this.state.cookHours}
+								onChange={e => this.handleCookHoursChange(e)}
+								required
+							/>
+							<label htmlFor="cookMinutes">Minutes:</label>
+							<input
+								type="number"
+								id="cookMinutes"
+								min="0"
+								max="60"
+								value={this.state.cookMinutes}
+								onChange={e => this.handleCookMinutesChange(e)}
+								required
+							/>
+						</fieldset>
+
+						<fieldset>
+							<legend>Ingredients:</legend>
+							{this.state.ingredients.map((ingredient, idx) => {
+								return (
+									<div key={idx}>
+										<input
+											type="text"
+											placeholder={`Ingredient #${idx + 1}`}
+											value={ingredient}
+											onChange={e => this.handleIngredientChange(e, idx)}
+											required
+										/>
+										<button
+											className="appBtn"
+											type="button"
+											onClick={() => this.removeIngredient(idx)}
+										>
+											-
+										</button>
+									</div>
+								);
+							})}
+							<div className="appBtnContainer">
+								<button className="appBtn" type="button" onClick={() => this.addIngredient()}>
+									Add Ingredient
+								</button>
+							</div>
+						</fieldset>
+
+						<label htmlFor="instructions">Instructions:</label>
+						<textarea
+							id="instructions"
+							spellCheck="true"
+							rows="10"
+							cols="40"
+							value={this.state.instructions}
+							onChange={e => this.handleInstructionsChange(e)}
+							required
+						/>
+
+						<label htmlFor="notes">Notes:</label>
+						<textarea
+							id="notes"
+							spellCheck="true"
+							rows="10"
+							cols="40"
+							value={this.state.notes}
+							onChange={e => this.handleNotesChange(e)}
+						/>
+
 						<div className="appBtnContainer">
-							<button className="appBtn" type="button" onClick={() => this.addIngredient()}>
-								Add Ingredient
+							<button className="appBtn" type="submit" value="Submit">
+								Upload Recipe
+							</button>
+							<button
+								className="appBtn"
+								type="button"
+								value="Reset"
+								onClick={() => this.handleFormReset()}
+							>
+								Cancel
 							</button>
 						</div>
 					</fieldset>
-
-					<label htmlFor="instructions">Instructions:</label>
-					<textarea
-						id="instructions"
-						spellCheck="true"
-						rows="10"
-						cols="40"
-						value={this.state.instructions}
-						onChange={e => this.handleInstructionsChange(e)}
-						required
-					/>
-
-					<label htmlFor="notes">Notes:</label>
-					<textarea
-						id="notes"
-						spellCheck="true"
-						rows="10"
-						cols="40"
-						value={this.state.notes}
-						onChange={e => this.handleNotesChange(e)}
-					/>
-
-					<div className="appBtnContainer">
-						<button className="appBtn" type="submit" value="Submit">
-							Upload Recipe
-						</button>
-						<button className="appBtn" type="button" value="Reset" onClick={() => this.handleFormReset()}>
-							Cancel
-						</button>
-					</div>
-				</fieldset>
-			</form>
-		);
+				</form>
+			);
+		}
 	}
 }
 
