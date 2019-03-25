@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
 
@@ -86,6 +87,7 @@ class Recipe extends React.Component {
 			return (
 				<div>
 					<p>Recipe details</p>
+					<Link to={`/edit/${recipe[0]._id}`}>Edit Recipe</Link>
 					{this.renderRecipe(recipe)}
 				</div>
 			);

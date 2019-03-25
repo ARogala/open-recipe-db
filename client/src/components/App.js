@@ -7,6 +7,7 @@ import Search from './Search';
 import Results from './Results';
 import Recipe from './Recipe';
 import CreateRecipe from './CreateRecipe';
+import EditRecipe from './EditRecipe';
 import About from './About';
 
 import logo from '../images/logo.svg';
@@ -45,6 +46,7 @@ class App extends Component {
                         }}
                     />
                     <Route path='/create' component={CreateRecipe} />
+                    <Route path='/edit/:id' component={EditRecipe} />
                     <Route path="/recipe/:id" component={Recipe} />
                     <Route path="/about" render={() => <About />} />
                 </main>
