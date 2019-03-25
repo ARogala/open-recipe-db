@@ -129,29 +129,46 @@ class CreateRecipe extends React.Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
+		const prepTime = {
+			hours: parseInt(this.state.prepHours),
+			minutes: parseInt(this.state.prepMinutes)
+		};
 
-		let category = this.state.category;
-		let subCategory = this.state.subCategory;
-		let difficulty = this.state.difficulty;
-		console.log(this.state.contributor);
-		console.log(this.state.date);
-		console.log(this.state.title);
-		console.log(this.state.category);
-		console.log(this.state.subCategory);
-		console.log(this.state.rating);
-		console.log(this.state.difficulty);
-		console.log(this.state.prepHours);
-		console.log(this.state.prepMinutes);
-		console.log(this.state.cookHours);
-		console.log(this.state.cookMinutes);
-		console.log(this.state.ingredients);
-		console.log(this.state.instructions);
-		console.log(this.state.notes);
+		const cookTime = {
+			hours: parseInt(this.state.cookHours),
+			minutes: parseInt(this.state.cookMinutes)
+		};
 
-		if (category === 'undefined' || subCategory === 'undefined' || difficulty === 'undefined') {
-			this.notify();
-			return;
+		const totalMin = prepTime.hours * 60 + prepTime.minutes + cookTime.hours * 60 + cookTime.minutes;
+		const totalHrs = Math.floor(totalMin / 60);
+		const min = totalMin - totalHrs * 60;
+
+		const totalTime = {
+			hours: totalHrs,
+			minutes: min
+		};
+
+		const recipe = {
+			name: this.state.title,
+			category: this.state.category,
+			subCategory: this.state.subCategory,
+			starRating: this.state.rating,
+			contributor: this.state.contributor,
+			date: this.state.date,
+			difficulty: this.state.difficulty,
+			prepTime: prepTime,
+			cookTime: cookTime,
+			totalTime: totalTime,
+			ingredients: this.state.ingredients,
+			instructions: this.state.instructions,
+			notes: this.state.notes
 		}
+
+		console.log(recipe);
+		// if (category === 'undefined' || subCategory === 'undefined' || difficulty === 'undefined') {
+		// 	this.notify();
+		// 	return;
+		// }
 	}
 
 	handleFormReset() {
