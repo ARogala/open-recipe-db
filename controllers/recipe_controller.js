@@ -28,7 +28,7 @@ module.exports = {
 	create: function(req, res, next) {
 		const recipeProps = req.body;
 		Recipe.create(recipeProps)
-			.then(recipe => res.send(recipe))
+			.then(recipe => res.send([recipe]))
 			.catch(next);
 	},
 	edit: function(req, res, next) {
