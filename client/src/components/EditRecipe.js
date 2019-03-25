@@ -33,6 +33,31 @@ class EditRecipe extends React.Component {
 		this.props.getRecipeById(id);
 	}
 
+	componentDidUpdate(prevProps) {
+		console.log(this.props.recipe);
+		console.log(prevProps);
+		const { recipe } = this.props.recipe;
+		if (this.props.recipe.loaded !== prevProps.recipe.loaded && this.props.recipe.recipe.length === 1) {
+			console.log('hi');
+			this.setState({
+				contributor: recipe[0].contributor,
+				date: recipe[0].date,
+				title: recipe[0].name,
+				category: recipe[0].category,
+				subCategory: recipe[0].subCategory,
+				rating: recipe[0].starRating,
+				difficulty: recipe[0].difficulty,
+				prepHours: recipe[0].prepTime.hours,
+				prepMinutes: recipe[0].prepTime.minutes,
+				cookHours: recipe[0].cookTime.hours,
+				cookMinutes: recipe[0].cookTime.minutes,
+				ingredients: recipe[0].ingredients,
+				instructions: recipe[0].instructions,
+				notes: recipe[0].notes
+			});
+		}
+	}
+
 	renderError = () => {
 		return (
 			<div className="recipe">
@@ -42,6 +67,7 @@ class EditRecipe extends React.Component {
 			</div>
 		);
 	};
+
 	renderLoader = () => {
 		return (
 			<div className="recipe">
@@ -195,7 +221,7 @@ class EditRecipe extends React.Component {
 			instructions: this.state.instructions,
 			notes: this.state.notes
 		};
-		this.props.postRecipe(recipe);
+		// this.props.postRecipe(recipe);
 		this.handleFormReset();
 	}
 
@@ -219,7 +245,8 @@ class EditRecipe extends React.Component {
 	}
 
 	render() {
-		console.log(this.props.recipe);
+		// console.log(this.props.recipe);
+		const { error, loaded, recipe } = this.props.recipe;
 		return (
 			<form className="search" onSubmit={e => this.handleSubmit(e)}>
 				<fieldset>
