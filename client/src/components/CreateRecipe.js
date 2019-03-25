@@ -2,6 +2,8 @@ import React from 'react';
 import { toast } from 'react-toastify';
 import { connect } from 'react-redux';
 
+import { postRecipe } from '../redux/actions';
+
 class CreateRecipe extends React.Component {
 	constructor(props) {
 		super(props);
@@ -124,7 +126,7 @@ class CreateRecipe extends React.Component {
 	handleNotesChange(e) {
 		this.setState({
 			notes: e.target.value
-		})
+		});
 	}
 
 	handleSubmit(e) {
@@ -162,9 +164,10 @@ class CreateRecipe extends React.Component {
 			ingredients: this.state.ingredients,
 			instructions: this.state.instructions,
 			notes: this.state.notes
-		}
+		};
 
 		console.log(recipe);
+		this.props.postRecipe(recipe);
 		// if (category === 'undefined' || subCategory === 'undefined' || difficulty === 'undefined') {
 		// 	this.notify();
 		// 	return;
@@ -191,6 +194,7 @@ class CreateRecipe extends React.Component {
 	}
 
 	render() {
+		console.log(this.props.postRecipeRes)
 		return (
 			<form className="search" onSubmit={e => this.handleSubmit(e)}>
 				<fieldset>
@@ -436,4 +440,17 @@ class CreateRecipe extends React.Component {
 	}
 }
 
-export default CreateRecipe;
+const mapStateToProps = state => {
+	return {
+		postRecipeRes: state.postRecipeRes
+	};
+};
+
+const mapDispatchToProps = {
+	postRecipe: postRecipe
+};
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(CreateRecipe);
