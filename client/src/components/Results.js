@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
 
-import formatDate from '../formatDate';
+import { formatMMDDYYYY } from '../formatDate';
 
 class Results extends React.Component {
 	renderError = () => {
@@ -39,7 +39,7 @@ class Results extends React.Component {
 						<li>{`Difficulty: ${recipe.difficulty}`}</li>
 						<li>{`Rating: ${recipe.starRating}`}</li>
 						<li>{`Total Time: ${recipe.totalTime.hours} hours and ${recipe.totalTime.minutes} minutes`}</li>
-						<li>{`Date: ${formatDate(recipe.date)}`}</li>
+						<li>{`Date: ${formatMMDDYYYY(recipe.date)}`}</li>
 					</ul>
 				</li>
 			);

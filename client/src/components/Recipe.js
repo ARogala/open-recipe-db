@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import { getRecipeById } from '../redux/actions';
 
-import formatDate from '../formatDate';
+import { formatMMDDYYYY } from '../formatDate';
 
 class Recipe extends React.Component {
 	componentDidMount() {
@@ -57,7 +57,7 @@ class Recipe extends React.Component {
 						<li>{`Total Time: ${recipe[0].totalTime.hours} hours and ${
 							recipe[0].totalTime.minutes
 						} minutes`}</li>
-						<li>{`Date: ${formatDate(recipe[0].date)}`}</li>
+						<li>{`Date: ${formatMMDDYYYY(recipe[0].date)}`}</li>
 						<li>
 							Ingredients:
 							<ul>{ingredients}</ul>

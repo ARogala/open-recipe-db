@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 
 import { getRecipeById } from '../redux/actions';
 
+import { formatYYYYMMDD } from '../formatDate';
+
 class EditRecipe extends React.Component {
 	constructor(props) {
 		super(props);
@@ -41,7 +43,7 @@ class EditRecipe extends React.Component {
 			console.log('hi');
 			this.setState({
 				contributor: recipe[0].contributor,
-				date: recipe[0].date,
+				date: formatYYYYMMDD(recipe[0].date),
 				title: recipe[0].name,
 				category: recipe[0].category,
 				subCategory: recipe[0].subCategory,
@@ -55,6 +57,7 @@ class EditRecipe extends React.Component {
 				instructions: recipe[0].instructions,
 				notes: recipe[0].notes
 			});
+			console.log(this.state.date);
 		}
 	}
 
