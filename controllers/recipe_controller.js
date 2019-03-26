@@ -36,7 +36,7 @@ module.exports = {
 		const recipeProps = req.body;
 		Recipe.findByIdAndUpdate({ _id: recipeId }, recipeProps)
 			.then(() => Recipe.findById({ _id: recipeId }))
-			.then(recipe => res.send(recipe))
+			.then(recipe => res.send([recipe]))
 			.catch(next);
 	},
 	delete: function(req, res, next) {

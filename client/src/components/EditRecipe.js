@@ -36,11 +36,8 @@ class EditRecipe extends React.Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		console.log(this.props.recipe);
-		console.log(prevProps);
 		const { recipe } = this.props.recipe;
 		if (this.props.recipe.loaded !== prevProps.recipe.loaded && this.props.recipe.recipe.length === 1) {
-			console.log('hi');
 			this.setState({
 				contributor: recipe[0].contributor,
 				date: formatYYYYMMDD(recipe[0].date),
@@ -57,7 +54,6 @@ class EditRecipe extends React.Component {
 				instructions: recipe[0].instructions,
 				notes: recipe[0].notes
 			});
-			console.log(this.state.date);
 		}
 	}
 
