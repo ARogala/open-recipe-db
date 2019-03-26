@@ -23,8 +23,12 @@ class CreateRecipe extends React.Component {
 			cookMinutes: '',
 			ingredients: [''],
 			instructions: '',
-			notes: ''
+			notes: '',
+			toastCount: 0
 		};
+		//Note: toastCount used to ensure toast notify and link to recipe page are displayed only once
+		//after successful upload and not again if user goes back to create page from recipe page
+		//bc navigation between pages does not cause state to reset
 	}
 
 	renderError = () => {
@@ -191,6 +195,10 @@ class CreateRecipe extends React.Component {
 		};
 		this.props.postRecipe(recipe);
 		this.handleFormReset();
+
+		let count = this.state.toastCount;
+		count = count + 1;
+		this.setState({ toastCount: count });
 	}
 
 	handleFormReset() {
@@ -221,16 +229,17 @@ class CreateRecipe extends React.Component {
 			return this.renderError();
 		} else if (loaded === false && btnClicked === true) {
 			return this.renderLoader();
+		} else if (res.length === 1 && this.state.toastCount === 1) {
+			return (
+				<div>
+					{this.notify()}
+					<p>View your recipe!</p>
+					<Link to={`/recipe/${res[0]._id}`}>{`Title: ${res[0].name}`}</Link>
+				</div>
+			);
 		} else {
 			return (
 				<form className="search" onSubmit={e => this.handleSubmit(e)}>
-					{res.length === 1 ? this.notify() : null}
-					{res.length === 1 ? (
-						<div>
-							<p>View your recipe!</p>
-							<Link to={`/recipe/${res[0]._id}`}>{`Title: ${res[0].name}`}</Link>
-						</div>
-					) : null}
 					<fieldset>
 						<legend>Add a new recipe</legend>
 

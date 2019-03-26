@@ -28,7 +28,7 @@ class EditRecipe extends React.Component {
 			notes: '',
 			toastCount: 0
 		};
-		//Note: toastCount is only used to ensure toast notify and link to recipe page a displayed once
+		//Note: toastCount used to ensure toast notify and link to recipe page are displayed only once
 		//after successful update and not again if user goes back to edit page from recipe page
 		//bc navigation between pages does not cause state to reset
 	}
