@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
 
-import { getRecipeById } from '../redux/actions';
+import { getRecipeById, editRecipe } from '../redux/actions';
 
 import { formatYYYYMMDD } from '../formatDate';
 
@@ -186,6 +186,7 @@ class EditRecipe extends React.Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
+		const id = this.props.match.params.id;
 		const prepTime = {
 			hours: parseInt(this.state.prepHours),
 			minutes: parseInt(this.state.prepMinutes)
@@ -220,7 +221,7 @@ class EditRecipe extends React.Component {
 			instructions: this.state.instructions,
 			notes: this.state.notes
 		};
-		// this.props.postRecipe(recipe);
+		this.props.editRecipe(recipe, id);
 		this.handleFormReset();
 	}
 
@@ -244,12 +245,13 @@ class EditRecipe extends React.Component {
 	}
 
 	render() {
-		// console.log(this.props.recipe);
+		console.log('Recipe: ', this.props.recipe);
+		console.log('putRecipeRes: ', this.props.putRecipeRes);
 		const { error, loaded, recipe } = this.props.recipe;
 		return (
 			<form className="search" onSubmit={e => this.handleSubmit(e)}>
 				<fieldset>
-					<legend>Add a new recipe</legend>
+					<legend>Edit recipe</legend>
 
 					<label htmlFor="contributor">Contributor:</label>
 					<input
@@ -493,12 +495,14 @@ class EditRecipe extends React.Component {
 
 const mapStateToProps = state => {
 	return {
-		recipe: state.recipe
+		recipe: state.recipe,
+		putRecipeRes: state.putRecipeRes
 	};
 };
 
 const mapDispatchToProps = {
-	getRecipeById: getRecipeById
+	getRecipeById: getRecipeById,
+	editRecipe: editRecipe
 };
 
 export default connect(
