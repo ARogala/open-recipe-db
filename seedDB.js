@@ -39,7 +39,7 @@ function createRecipe() {
 		subCategory: subCategory[randomBetween(0, subCategory.length - 1)],
 		starRating: randomBetween(1, 5),
 		contributor: faker.name.findName(),
-		date: faker.date.past(),
+		date: getDate(),
 		difficulty: difficulty[randomBetween(0, difficulty.length - 1)],
 		prepTime: time[0],
 		cookTime: time[1],
@@ -80,6 +80,24 @@ function getTime() {
 	};
 
 	return [prepTime, cookTime, totalTime];
+}
+
+function getDate() {
+	const randomDate = faker.date.past();
+	const year = randomDate.getFullYear();
+	let month = randomDate.getMonth() + 1;
+	let day = randomDate.getDate();
+	if (month <= 9) {
+		month = '0' + month;
+	}
+	if (day <= 9) {
+		day = '0' + day;
+	}
+
+	//year-mm-dd
+	const date = `${year}-${month}-${day}`;
+
+	return date;
 }
 
 function fillIngredients() {
