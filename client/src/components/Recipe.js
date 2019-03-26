@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
 
-import { getRecipeById } from '../redux/actions';
+import { getRecipeById, deleteRecipe } from '../redux/actions';
 
 import { formatMMDDYYYY } from '../formatDate';
 
@@ -13,6 +13,12 @@ class Recipe extends React.Component {
 		const id = this.props.match.params.id;
 		this.props.getRecipeById(id);
 	}
+
+	delete(id) {
+		console.log(id);
+		this.props.deleteRecipe(id);
+	}
+
 	renderError = () => {
 		return (
 			<div className="recipe">
@@ -82,6 +88,7 @@ class Recipe extends React.Component {
 	};
 	render() {
 		const { error, loaded, recipe } = this.props.recipe;
+		console.log(this.props.deleteRecipeRes);
 		//api will send an error obj on recipes if server error occurs
 		if (error || recipe.error) {
 			return this.renderError();
@@ -90,6 +97,9 @@ class Recipe extends React.Component {
 				<div>
 					<p>Recipe details</p>
 					<Link to={`/edit/${recipe[0]._id}`}>Edit Recipe</Link>
+					<button className="appBtn" type="button" onClick={() => this.delete(recipe[0]._id)} >
+						Delete Recipe
+					</button>
 					{this.renderRecipe(recipe)}
 				</div>
 			);
@@ -101,12 +111,14 @@ class Recipe extends React.Component {
 
 const mapStateToProps = state => {
 	return {
-		recipe: state.recipe
+		recipe: state.recipe,
+		deleteRecipeRes: state.deleteRecipeRes
 	};
 };
 
 const mapDispatchToProps = {
-	getRecipeById: getRecipeById
+	getRecipeById: getRecipeById,
+	deleteRecipe: deleteRecipe
 };
 
 export default connect(

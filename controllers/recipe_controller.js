@@ -9,7 +9,7 @@ module.exports = {
 			.catch(next);
 	},
 	getById: function(req, res, next) {
-		Recipe.find({_id: req.params.id})
+		Recipe.find({ _id: req.params.id })
 			.then(recipe => res.send(recipe))
 			.catch(next);
 	},
@@ -42,7 +42,7 @@ module.exports = {
 	delete: function(req, res, next) {
 		const recipeId = req.params.id;
 		Recipe.findByIdAndRemove({ _id: recipeId })
-			.then(recipe => res.status(204).send(recipe))
+			.then(() => res.status(200).send([{ msg: 'delete successful' }]))
 			.catch(next);
 	}
 };
