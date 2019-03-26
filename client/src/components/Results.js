@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
 
+import formatDate from '../formatDate';
+
 class Results extends React.Component {
 	renderError = () => {
 		return (
@@ -37,7 +39,7 @@ class Results extends React.Component {
 						<li>{`Difficulty: ${recipe.difficulty}`}</li>
 						<li>{`Rating: ${recipe.starRating}`}</li>
 						<li>{`Total Time: ${recipe.totalTime.hours} hours and ${recipe.totalTime.minutes} minutes`}</li>
-						<li>{`Date: ${recipe.date}`}</li>
+						<li>{`Date: ${formatDate(recipe.date)}`}</li>
 					</ul>
 				</li>
 			);
@@ -46,7 +48,7 @@ class Results extends React.Component {
 	};
 
 	render() {
-		console.log('Recipes: ', this.props.recipes);
+		// console.log('Recipes: ', this.props.recipes);
 		const { error, loaded, btnClicked, recipes } = this.props.recipes;
 		//api will send an error obj on recipes if server error occurs
 		if (error || recipes.error) {
