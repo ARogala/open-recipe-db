@@ -15,7 +15,6 @@ export const deleteRecipe = id => {
 			.then(res => res.json())
 			.then(
 				result => {
-					console.log(result);
 					dispatch({
 						type: DELETE_RECIPE_SUCCESS,
 						payload: {
@@ -26,7 +25,6 @@ export const deleteRecipe = id => {
 					});
 				},
 				error => {
-					console.log(error);
 					dispatch({
 						type: DELETE_RECIPE_ERROR,
 						payload: {
