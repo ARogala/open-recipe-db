@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
 
+import Paginator from './Paginator';
+
 import { formatMMDDYYYY } from '../formatDate';
 
 class Results extends React.Component {
@@ -60,6 +62,7 @@ class Results extends React.Component {
 				<div>
 					<p>Total Results: {recipes.count}</p>
 					<ul>{this.renderRecipeList(recipes.all)}</ul>
+					<Paginator />
 				</div>
 			);
 		} else {
