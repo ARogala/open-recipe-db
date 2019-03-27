@@ -19,7 +19,10 @@ module.exports = {
 			.catch(next);
 	},
 	getFiltered: function(req, res, next) {
-		const query = Recipe.find(getConditions(req.params)[0]).sort(getConditions(req.params)[1]);
+		const query = Recipe.find(getConditions(req.params)[0])
+			.sort(getConditions(req.params)[1])
+			.skip(20)
+			.limit(20);
 
 		Promise.all([query, Recipe.find(getConditions(req.params)[0]).countDocuments()])
 			.then(results => res.send({ all: results[0], count: results[1] }))
