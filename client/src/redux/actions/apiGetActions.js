@@ -19,8 +19,8 @@ define the throttled fetch outside the action creator otherwise
 everytime the action creator gets called it will retrun a new throttle function
 and throttle will not work as intended
 */
-const filteredRecipes = throttle((dispatch, category, subCategory, difficulty, sortBy) => {
-	fetch(`/api/recipe/${category}/${subCategory}/${difficulty}/${sortBy}`)
+const filteredRecipes = throttle((dispatch, category, subCategory, difficulty, sortBy, skip) => {
+	fetch(`/api/recipe/${category}/${subCategory}/${difficulty}/${sortBy}/${skip}`)
 		.then(res => res.json())
 		.then(
 			result => {
@@ -57,7 +57,7 @@ Alt short hand syntax above as well as a test json placeholder endpoint
 see https://gist.github.com/krstffr/245fe83885b597aabaf06348220c2fe9
 */
 
-export const getFilteredRecipes = (category, subCategory, difficulty, sortBy) => {
+export const getFilteredRecipes = (category, subCategory, difficulty, sortBy, skip) => {
 	return dispatch => {
 		dispatch({
 			type: GET_FILTERED_RECIPES,

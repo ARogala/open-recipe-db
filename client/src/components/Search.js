@@ -44,7 +44,8 @@ class Search extends React.Component {
 		const subCategory = this.state.subCategory;
 		const difficulty = this.state.difficulty;
 		const sortBy = this.state.sortBy;
-		this.props.getFilteredRecipes(category, subCategory, difficulty, sortBy);
+		const skip = 0;
+		this.props.getFilteredRecipes(category, subCategory, difficulty, sortBy, skip);
 	}
 
 	handleFormReset() {
