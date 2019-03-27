@@ -62,7 +62,7 @@ class Results extends React.Component {
 				<div>
 					<p>Total Results: {recipes.count}</p>
 					<ul>{this.renderRecipeList(recipes.all)}</ul>
-					<Paginator />
+					<Paginator count={recipes.count}/>
 				</div>
 			);
 		} else {
