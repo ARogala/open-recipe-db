@@ -2,6 +2,7 @@ import {
 	GET_FILTERED_RECIPES,
 	GET_FILTERED_RECIPES_SUCCESS,
 	GET_FILTERED_RECIPES_ERROR,
+	SAVE_FILTERED_URL,
 	GET_RANDOM_RECIPES,
 	GET_RANDOM_RECIPES_SUCCESS,
 	GET_RANDOM_RECIPES_ERROR,
@@ -14,7 +15,14 @@ import {
 
 const initialState = {
 	recipes: { error: null, loaded: false, btnClicked: false, recipes: {} },
-	recipe: { error: null, loaded: false, recipe: [] }
+	recipe: { error: null, loaded: false, recipe: [] },
+	filteredURL: {
+		category: 'undefined',
+		subCategory: 'undefined',
+		difficulty: 'undefined',
+		sortBy: 'undefined',
+		skip: 0
+	}
 };
 
 export const recipes = (recipes = initialState.recipes, action) => {
@@ -67,7 +75,7 @@ export const recipes = (recipes = initialState.recipes, action) => {
 				loaded: action.payload.loaded,
 				btnClicked: action.payload.btnClicked,
 				recipes: action.payload.recipes
-			}
+			};
 		default:
 			return recipes;
 	}
@@ -80,7 +88,7 @@ export const recipe = (recipe = initialState.recipe, action) => {
 				error: null,
 				loaded: action.payload.loaded,
 				recipe: []
-			}
+			};
 		case GET_RECIPE_BYID_SUCCESS:
 			return {
 				error: null,
@@ -101,5 +109,20 @@ export const recipe = (recipe = initialState.recipe, action) => {
 			};
 		default:
 			return recipe;
+	}
+};
+
+export const filteredURL = (filteredURL = initialState.filteredURL, action) => {
+	switch (action.type) {
+		case SAVE_FILTERED_URL:
+			return {
+				category: action.payload.category,
+				subCategory: action.payload.subCategory,
+				difficulty: action.payload.difficulty,
+				sortBy: action.payload.sortBy,
+				skip: action.payload.skip
+			};
+		default:
+			return filteredURL;
 	}
 };

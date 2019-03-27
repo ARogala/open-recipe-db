@@ -4,6 +4,7 @@ import {
 	GET_FILTERED_RECIPES,
 	GET_FILTERED_RECIPES_SUCCESS,
 	GET_FILTERED_RECIPES_ERROR,
+	SAVE_FILTERED_URL,
 	GET_RANDOM_RECIPES,
 	GET_RANDOM_RECIPES_SUCCESS,
 	GET_RANDOM_RECIPES_ERROR,
@@ -67,6 +68,19 @@ export const getFilteredRecipes = (category, subCategory, difficulty, sortBy, sk
 			}
 		});
 		return filteredRecipes(dispatch, category, subCategory, difficulty, sortBy);
+	};
+};
+
+export const saveFilteredURL = (category, subCategory, difficulty, sortBy, skip) => {
+	return {
+		type: SAVE_FILTERED_URL,
+		payload: {
+			category: category,
+			subCategory: subCategory,
+			difficulty: difficulty,
+			sortBy: sortBy,
+			skip: skip
+		}
 	};
 };
 
@@ -159,7 +173,7 @@ export const getRecipeById = id => {
 export const updateRecipe = () => {
 	return {
 		type: UPDATE_RECIPE_ON_DELETE,
-		payload : {
+		payload: {
 			recipe: [],
 			loaded: true
 		}
