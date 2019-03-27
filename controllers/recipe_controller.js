@@ -19,9 +19,10 @@ module.exports = {
 			.catch(next);
 	},
 	getFiltered: function(req, res, next) {
+		const skip = parseInt(req.params.skip);
 		const query = Recipe.find(getConditions(req.params)[0])
 			.sort(getConditions(req.params)[1])
-			.skip(20)
+			.skip(skip)
 			.limit(20);
 
 		Promise.all([query, Recipe.find(getConditions(req.params)[0]).countDocuments()])
