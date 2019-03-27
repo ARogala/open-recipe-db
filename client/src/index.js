@@ -12,6 +12,7 @@ import * as serviceWorker from './serviceWorker';
 
 import './styles/main.scss';
 import 'react-toastify/dist/ReactToastify.min.css';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 const store = createStore(reducers, applyMiddleware(thunk));
 

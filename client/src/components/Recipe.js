@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
+import { confirmAlert } from 'react-confirm-alert';
+import { toast } from 'react-toastify';
 import { connect } from 'react-redux';
 
 import { getRecipeById, deleteRecipe, updateRecipes, updateRecipe } from '../redux/actions';
@@ -24,7 +26,23 @@ class Recipe extends React.Component {
 	}
 
 	delete(id) {
-		this.props.deleteRecipe(id);
+		confirmAlert({
+			title: 'Delete this recipe?',
+			message:
+				'Are you sure you want to delete this recipe? This can not be undone! Please only delete recipes you uploaded!!',
+			buttons: [
+				{
+					label: 'Yes Delete',
+					onClick: () => this.props.deleteRecipe(id)
+				},
+				{
+					label: 'No',
+					onClick: () => {
+						return;
+					}
+				}
+			]
+		});
 	}
 
 	//update/remove recipes and recipe once after deleteRecipe success
@@ -38,8 +56,15 @@ class Recipe extends React.Component {
 			recipes = recipes.filter(recipe => recipe._id !== id);
 			this.props.updateRecipes({ all: recipes, count: recipes.length });
 			this.props.updateRecipe();
+			this.notify();
 		}
 	}
+
+	notify = () => {
+		toast.success('Recipe deleted successfully!', {
+			position: toast.POSITION.TOP_CENTER
+		});
+	};
 
 	renderError = () => {
 		return (
