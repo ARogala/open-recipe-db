@@ -3,10 +3,19 @@ import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
 
-import { getRecipeById, deleteRecipe } from '../redux/actions';
+import { getRecipeById, deleteRecipe, updateRecipes, updateRecipe } from '../redux/actions';
 
 import { formatMMDDYYYY } from '../formatDate';
-
+/*
+	conditional rendering is complicated... however component logic is easy
+	1. component mounts get the recipe by id and display it
+	2. User clicked delete btn. delete recipe and (componentDidUpdate)
+		a. remove deleted recipe from recipe state so we cannot display deleted recipe
+		   on the recipe page (ie this page)
+		b. remove deleted recipe from recipes state so we cannot display the deleted
+		   recipe on the home page
+	3. conditionaly render this pages state 
+*/
 class Recipe extends React.Component {
 	componentDidMount() {
 		//get id parameter from url and fetch recipe from api
@@ -15,8 +24,21 @@ class Recipe extends React.Component {
 	}
 
 	delete(id) {
-		console.log(id);
 		this.props.deleteRecipe(id);
+	}
+
+	//update/remove recipes and recipe once after deleteRecipe success
+	componentDidUpdate(prevProps) {
+		if (
+			this.props.deleteRecipeRes.loaded !== prevProps.deleteRecipeRes.loaded &&
+			this.props.deleteRecipeRes.res.length === 1
+		) {
+			let recipes = this.props.recipes.recipes.all;
+			const id = this.props.match.params.id;
+			recipes = recipes.filter(recipe => recipe._id !== id);
+			this.props.updateRecipes({ all: recipes, count: recipes.length });
+			this.props.updateRecipe();
+		}
 	}
 
 	renderError = () => {
@@ -28,18 +50,19 @@ class Recipe extends React.Component {
 			</div>
 		);
 	};
+
 	renderLoader = () => {
 		return (
 			<div className="recipe">
 				<div className="recipe__loader">
 					<div>
-						<p>Getting Recipe!</p>
 						<Loader type="Puff" color="#00BFFF" height="100" width="100" />
 					</div>
 				</div>
 			</div>
 		);
 	};
+
 	renderRecipe = recipe => {
 		let ingredients = recipe[0].ingredients.map((ingredient, index) => {
 			return <li key={index}>{ingredient}</li>;
@@ -86,25 +109,41 @@ class Recipe extends React.Component {
 		);
 		return recipeDOM;
 	};
+
 	render() {
-		const { error, loaded, recipe } = this.props.recipe;
-		console.log(this.props.deleteRecipeRes);
+		const getError = this.props.recipe.error;
+		const getLoaded = this.props.recipe.loaded;
+		const getRecipe = this.props.recipe.recipe;
+
+		const deleteError = this.props.deleteRecipeRes.error;
+		const deleteLoaded = this.props.deleteRecipeRes.loaded;
+		const btnClicked = this.props.deleteRecipeRes.btnClicked;
+		const res = this.props.deleteRecipeRes.res;
+		//console.log('delete res: ', this.props.deleteRecipeRes);
+		//console.log('get recipe: ', this.props.recipe);
 		//api will send an error obj on recipes if server error occurs
-		if (error || recipe.error) {
+		if (getError || getRecipe.error || deleteError || res.error) {
 			return this.renderError();
-		} else if (loaded && recipe.length !== 0) {
+		} else if (getLoaded === false || (deleteLoaded === false && btnClicked === true)) {
+			return this.renderLoader();
+		} else if (getRecipe.length === 1) {
 			return (
 				<div>
 					<p>Recipe details</p>
-					<Link to={`/edit/${recipe[0]._id}`}>Edit Recipe</Link>
-					<button className="appBtn" type="button" onClick={() => this.delete(recipe[0]._id)} >
+					<Link to={`/edit/${getRecipe[0]._id}`}>Edit Recipe</Link>
+					<button className="appBtn" type="button" onClick={() => this.delete(getRecipe[0]._id)}>
 						Delete Recipe
 					</button>
-					{this.renderRecipe(recipe)}
+					{this.renderRecipe(getRecipe)}
 				</div>
 			);
 		} else {
-			return this.renderLoader();
+			return (
+				<div>
+					<p>Your recipe was successfully deleted.</p>
+					<Link to={`/`}>Back</Link>
+				</div>
+			);
 		}
 	}
 }
@@ -112,13 +151,16 @@ class Recipe extends React.Component {
 const mapStateToProps = state => {
 	return {
 		recipe: state.recipe,
+		recipes: state.recipes,
 		deleteRecipeRes: state.deleteRecipeRes
 	};
 };
 
 const mapDispatchToProps = {
 	getRecipeById: getRecipeById,
-	deleteRecipe: deleteRecipe
+	deleteRecipe: deleteRecipe,
+	updateRecipes: updateRecipes,
+	updateRecipe: updateRecipe
 };
 
 export default connect(

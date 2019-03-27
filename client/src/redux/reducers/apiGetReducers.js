@@ -5,9 +5,11 @@ import {
 	GET_RANDOM_RECIPES,
 	GET_RANDOM_RECIPES_SUCCESS,
 	GET_RANDOM_RECIPES_ERROR,
+	UPDATE_RECIPES_ON_DELETE,
 	GET_RECIPE_BYID,
 	GET_RECIPE_BYID_SUCCESS,
-	GET_RECIPE_BYID_ERROR
+	GET_RECIPE_BYID_ERROR,
+	UPDATE_RECIPE_ON_DELETE
 } from '../actions/types';
 
 const initialState = {
@@ -59,6 +61,13 @@ export const recipes = (recipes = initialState.recipes, action) => {
 				btnClicked: action.payload.btnClicked,
 				recipes: {}
 			};
+		case UPDATE_RECIPES_ON_DELETE:
+			return {
+				error: null,
+				loaded: action.payload.loaded,
+				btnClicked: action.payload.btnClicked,
+				recipes: action.payload.recipes
+			}
 		default:
 			return recipes;
 	}
@@ -83,6 +92,12 @@ export const recipe = (recipe = initialState.recipe, action) => {
 				error: action.payload.error,
 				loaded: action.payload.loaded,
 				recipe: []
+			};
+		case UPDATE_RECIPE_ON_DELETE:
+			return {
+				error: null,
+				loaded: action.payload.loaded,
+				recipe: action.payload.recipe
 			};
 		default:
 			return recipe;

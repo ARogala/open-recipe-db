@@ -7,9 +7,11 @@ import {
 	GET_RANDOM_RECIPES,
 	GET_RANDOM_RECIPES_SUCCESS,
 	GET_RANDOM_RECIPES_ERROR,
+	UPDATE_RECIPES_ON_DELETE,
 	GET_RECIPE_BYID,
 	GET_RECIPE_BYID_SUCCESS,
-	GET_RECIPE_BYID_ERROR
+	GET_RECIPE_BYID_ERROR,
+	UPDATE_RECIPE_ON_DELETE
 } from './types';
 
 /*5sec throttle
@@ -108,35 +110,58 @@ export const getRandomRecipes = () => {
 	};
 };
 
-export const getRecipeById = (id) => {
+//must have same loaded and btnClick logic as success so it will render
+export const updateRecipes = recipes => {
+	return {
+		type: UPDATE_RECIPES_ON_DELETE,
+		payload: {
+			recipes: recipes,
+			loaded: true,
+			btnClicked: false
+		}
+	};
+};
+
+export const getRecipeById = id => {
 	return dispatch => {
 		dispatch({
 			type: GET_RECIPE_BYID,
-			payload : {
+			payload: {
 				loaded: false
 			}
 		});
 		fetch(`/api/recipe/${id}`)
-		.then(res => res.json())
-		.then(
-			result => {
-				dispatch({
-					type: GET_RECIPE_BYID_SUCCESS,
-					payload: {
-						result: result,
-						loaded: true
-					}
-				});
-			},
-			error => {
-				dispatch({
-					type: GET_RECIPE_BYID_ERROR,
-					payload: {
-						error: error,
-						loaded: true
-					}
-				});
-			}
-		);
+			.then(res => res.json())
+			.then(
+				result => {
+					dispatch({
+						type: GET_RECIPE_BYID_SUCCESS,
+						payload: {
+							result: result,
+							loaded: true
+						}
+					});
+				},
+				error => {
+					dispatch({
+						type: GET_RECIPE_BYID_ERROR,
+						payload: {
+							error: error,
+							loaded: true
+						}
+					});
+				}
+			);
+	};
+};
+
+//must have same loaded logic as success for Recipe.js render
+export const updateRecipe = () => {
+	return {
+		type: UPDATE_RECIPE_ON_DELETE,
+		payload : {
+			recipe: [],
+			loaded: true
+		}
 	};
 };
