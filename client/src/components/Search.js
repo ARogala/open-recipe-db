@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getFilteredRecipes, getRandomRecipes } from '../redux/actions';
+import { getFilteredRecipes, getRandomRecipes, saveFilteredURL } from '../redux/actions';
 
 class Search extends React.Component {
 	constructor(props) {
@@ -46,6 +46,7 @@ class Search extends React.Component {
 		const sortBy = this.state.sortBy;
 		const skip = 0;
 		this.props.getFilteredRecipes(category, subCategory, difficulty, sortBy, skip);
+		this.props.saveFilteredURL(category, subCategory, difficulty, sortBy, skip);
 	}
 
 	handleFormReset() {
@@ -175,7 +176,8 @@ class Search extends React.Component {
 
 const mapDispatchToProps = {
 	getFilteredRecipes: getFilteredRecipes,
-	getRandomRecipes: getRandomRecipes
+	getRandomRecipes: getRandomRecipes,
+	saveFilteredURL: saveFilteredURL
 };
 
 export default connect(
