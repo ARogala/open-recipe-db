@@ -67,7 +67,7 @@ export const getFilteredRecipes = (category, subCategory, difficulty, sortBy, sk
 				btnClicked: true
 			}
 		});
-		return filteredRecipes(dispatch, category, subCategory, difficulty, sortBy);
+		return filteredRecipes(dispatch, category, subCategory, difficulty, sortBy, skip);
 	};
 };
 

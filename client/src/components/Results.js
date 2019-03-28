@@ -50,7 +50,7 @@ class Results extends React.Component {
 	};
 
 	render() {
-		console.log('Recipes: ', this.props.recipes);
+		//console.log('Recipes: ', this.props.recipes);
 		const { error, loaded, btnClicked, recipes } = this.props.recipes;
 		//api will send an error obj on recipes if server error occurs
 		if (error || recipes.error) {
@@ -62,7 +62,7 @@ class Results extends React.Component {
 				<div>
 					<p>Total Results: {recipes.count}</p>
 					<ul>{this.renderRecipeList(recipes.all)}</ul>
-					<Paginator count={recipes.count}/>
+					<Paginator />
 				</div>
 			);
 		} else {
