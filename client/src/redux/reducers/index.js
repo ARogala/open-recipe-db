@@ -3,6 +3,7 @@ import { recipes, recipe, filteredURL } from './apiGetReducers';
 import { postRecipeRes } from './apiPostReducers';
 import { putRecipeRes } from './apiPutReducers';
 import { deleteRecipeRes } from './apiDeleteReducers';
+import { pages, page } from './paginationReducers';
 
 export default combineReducers({
 	recipes: recipes,
@@ -10,5 +11,7 @@ export default combineReducers({
 	filteredURL: filteredURL,
 	postRecipeRes: postRecipeRes,
 	putRecipeRes: putRecipeRes,
-	deleteRecipeRes: deleteRecipeRes
+	deleteRecipeRes: deleteRecipeRes,
+	pages: pages,
+	page: page
 });
