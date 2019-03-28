@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getFilteredRecipes, getRandomRecipes, saveFilteredURL } from '../redux/actions';
+import { getFilteredRecipes, getRandomRecipes, saveFilteredURL, savePage } from '../redux/actions';
 
 class Search extends React.Component {
 	constructor(props) {
@@ -37,7 +37,11 @@ class Search extends React.Component {
 			sortBy: e.target.value
 		});
 	}
-
+	/*
+		note must reset page to one (1) when user queries the DB.
+		page state only gets updated when user clicks next or previous
+		thus must reset the current page to 1 when a new search is send to the DB.
+	*/
 	handleSubmit(e) {
 		e.preventDefault();
 		const category = this.state.category;
@@ -47,6 +51,7 @@ class Search extends React.Component {
 		const skip = 0;
 		this.props.getFilteredRecipes(category, subCategory, difficulty, sortBy, skip);
 		this.props.saveFilteredURL(category, subCategory, difficulty, sortBy, skip);
+		this.props.savePage(1);
 	}
 
 	handleFormReset() {
@@ -177,7 +182,8 @@ class Search extends React.Component {
 const mapDispatchToProps = {
 	getFilteredRecipes: getFilteredRecipes,
 	getRandomRecipes: getRandomRecipes,
-	saveFilteredURL: saveFilteredURL
+	saveFilteredURL: saveFilteredURL,
+	savePage: savePage
 };
 
 export default connect(
