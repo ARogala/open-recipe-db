@@ -18,11 +18,8 @@ class Paginator extends React.Component {
 
 		skip = skip + 20;
 		const page = skip / 20 + 1;
-
 		if (page > pages) return;
-		// console.log(category, subCategory, difficulty, sortBy, skip);
-		// console.log('Pages: ', pages);
-		// console.log('Page: ', page);
+
 		this.props.getFilteredRecipes(category, subCategory, difficulty, sortBy, skip);
 		this.props.saveFilteredURL(category, subCategory, difficulty, sortBy, skip);
 		this.props.savePage(page);
@@ -30,15 +27,11 @@ class Paginator extends React.Component {
 
 	previousPage() {
 		let { category, subCategory, difficulty, sortBy, skip } = this.props.filteredURL;
-		// const pages = this.props.pages;
 
 		const page = skip / 20;
-
 		skip = skip - 20;
 		if (page < 1) return;
-		// console.log(category, subCategory, difficulty, sortBy, skip);
-		// console.log('Pages: ', pages);
-		// console.log('Page: ', page);
+
 		this.props.getFilteredRecipes(category, subCategory, difficulty, sortBy, skip);
 		this.props.saveFilteredURL(category, subCategory, difficulty, sortBy, skip);
 		this.props.savePage(page);
@@ -48,8 +41,6 @@ class Paginator extends React.Component {
 		const pages = this.props.pages;
 		const page = this.props.page;
 
-		console.log('Pages from redux', pages);
-		console.log('Page from redux', page);
 		if (pages === 1) {
 			return (
 				<p>
