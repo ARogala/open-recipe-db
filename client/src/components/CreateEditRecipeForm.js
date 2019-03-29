@@ -324,7 +324,7 @@ class CreateEditRecipeForm extends React.Component {
 							<option value="Pro Chef">Pro Chef</option>
 						</select>
 					</div>
-					<fieldset className="form__fieldset">
+					<fieldset className="form__fieldset form__fieldset-inner">
 						<legend className="form__legend">Prep Time</legend>
 						<label className="form__label" htmlFor="prepHours">
 							Hours:
@@ -358,7 +358,7 @@ class CreateEditRecipeForm extends React.Component {
 						</div>
 					</fieldset>
 
-					<fieldset className="form__fieldset">
+					<fieldset className="form__fieldset form__fieldset-inner">
 						<legend className="form__legend">Cook Time</legend>
 						<label className="form__label" htmlFor="cookHours">
 							Hours:
@@ -392,14 +392,14 @@ class CreateEditRecipeForm extends React.Component {
 						</div>
 					</fieldset>
 
-					<fieldset className="form__fieldset">
+					<fieldset className="form__fieldset form__fieldset-inner">
 						<legend className="form__legend">Ingredients:</legend>
 						{this.state.ingredients.map((ingredient, idx) => {
 							return (
-								<div key={idx}>
-									<div className="form__input-div">
+								<div key={idx} className="form__ingredient-div">
+									<div className="form__input-div form__ingredient-input-div">
 										<input
-											className="form__input"
+											className="form__input form__ingredient-input"
 											type="text"
 											placeholder={`Ingredient #${idx + 1}`}
 											value={ingredient}
@@ -407,7 +407,7 @@ class CreateEditRecipeForm extends React.Component {
 											required
 										/>
 									</div>
-									<button className="appBtn" type="button" onClick={() => this.removeIngredient(idx)}>
+									<button className="appBtn ingredientBtn" type="button" onClick={() => this.removeIngredient(idx)}>
 										-
 									</button>
 								</div>

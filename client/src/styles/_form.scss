@@ -8,6 +8,11 @@
 		border-radius: $border-radius-xl;
 	}
 
+	&__fieldset-inner {
+		width: 95%;
+		margin: 5px auto 5px auto;
+	}
+
 	&__legend {
 		font-size: $small-font-size;
 		text-align: center;
@@ -83,5 +88,34 @@
 		outline: none;
 		background: $grey;
 		cursor: pointer;
+	}
+
+	&__ingredient-div {
+		display: flex;
+	}
+
+	&__ingredient-input-div {
+		margin: 5px 5px 5px auto;
+	}
+
+	&__textarea {
+		font-size: $small-font-size;
+		font-family: $font-family;
+		width: 95%;
+		border: 1px solid black;
+		padding: 5px;
+		margin: 5px auto 5px auto;
+		display: block;
+		border-radius: $border-radius-xl;
+	}
+
+	&__textarea:hover {
+		outline: none;
+		background: $grey;
+	}
+
+	&__textarea:focus {
+		outline: none;
+		background: $grey;
 	}
 }

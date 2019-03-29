@@ -29,6 +29,11 @@
 	font-family: $font-family;
 }
 
+.ingredientBtn {
+	margin: 5px auto 5px 5px;
+	padding: 3px 20px;
+}
+
 .appBtn:focus {
 	outline: 2px solid blue;
 }
