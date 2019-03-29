@@ -9,11 +9,18 @@ class Search extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			title: '',
 			category: 'undefined',
 			subCategory: 'undefined',
 			difficulty: 'undefined',
 			sortBy: 'undefined'
 		};
+	}
+
+	handleTitleChange(e) {
+		this.setState({
+			title: e.target.value
+		});
 	}
 
 	handleCategoryChange(e) {
@@ -46,13 +53,17 @@ class Search extends React.Component {
 	*/
 	handleSubmit(e) {
 		e.preventDefault();
+		let title = this.state.title;
+		if (title === '') {
+			title = 'undefined';
+		}
 		const category = this.state.category;
 		const subCategory = this.state.subCategory;
 		const difficulty = this.state.difficulty;
 		const sortBy = this.state.sortBy;
 		const skip = 0;
-		this.props.getFilteredRecipes(category, subCategory, difficulty, sortBy, skip);
-		this.props.saveFilteredURL(category, subCategory, difficulty, sortBy, skip);
+		this.props.getFilteredRecipes(title, category, subCategory, difficulty, sortBy, skip);
+		this.props.saveFilteredURL(title, category, subCategory, difficulty, sortBy, skip);
 		this.props.savePage(1);
 	}
 
@@ -65,6 +76,7 @@ class Search extends React.Component {
 
 	handleFormReset() {
 		this.setState({
+			title: '',
 			category: 'undefined',
 			subCategory: 'undefined',
 			difficulty: 'undefined',
@@ -86,6 +98,14 @@ class Search extends React.Component {
 				<form className="search" onSubmit={e => this.handleSubmit(e)}>
 					<fieldset>
 						<legend>Search Recipes Database</legend>
+						<label htmlFor="title">Title:</label>
+						<input
+							className="search__select"
+							id="title"
+							type="text"
+							value={this.state.title}
+							onChange={e => this.handleTitleChange(e)}
+						/>
 						<label htmlFor="category">Category:</label>
 						<select
 							className="search__select"
