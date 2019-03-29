@@ -95,62 +95,82 @@ class Search extends React.Component {
 						All Recipes
 					</button>
 				</div>
-				<form className="search" onSubmit={e => this.handleSubmit(e)}>
-					<fieldset>
-						<legend>Search Recipes Database</legend>
-						<label htmlFor="title">Title:</label>
-						<input
-							className="search__select"
-							id="title"
-							type="text"
-							value={this.state.title}
-							onChange={e => this.handleTitleChange(e)}
-						/>
-						<label htmlFor="category">Category:</label>
-						<select
-							className="search__select"
-							id="category"
-							value={this.state.category}
-							onChange={e => this.handleCategoryChange(e)}
-						>
-							<option value="undefined">--Choose a Category--</option>
-							<CategoryOptions />
-						</select>
-						<label htmlFor="subCategory">SubCategory:</label>
-						<select
-							className="search__select"
-							id="subCategory"
-							value={this.state.subCategory}
-							onChange={e => this.handleSubCategoryChange(e)}
-						>
-							<option value="undefined">--Choose a SubCategory--</option>
-							<SubCategoryOptions />
-						</select>
-						<label htmlFor="difficulty">Difficulty:</label>
-						<select
-							className="search__select"
-							id="difficulty"
-							value={this.state.difficulty}
-							onChange={e => this.handleDifficultyChange(e)}
-						>
-							<option value="undefined">--Choose a Difficulty--</option>
-							<option value="Easy">Easy</option>
-							<option value="Medium">Medium</option>
-							<option value="Hard">Hard</option>
-							<option value="Pro Chef">Pro Chef</option>
-						</select>
-						<label htmlFor="sortBy">Sort By:</label>
-						<select
-							className="search__select"
-							id="sortBy"
-							value={this.state.sortBy}
-							onChange={e => this.handleSortByChange(e)}
-						>
-							<option value="undefined">--Sort Results By--</option>
-							<option value="starRating">Star Rating</option>
-							<option value="totalTime">Total Time</option>
-							<option value="date">Date</option>
-						</select>
+				<form className="form" onSubmit={e => this.handleSubmit(e)}>
+					<fieldset className="form__fieldset">
+						<legend className="form__legend">Search Recipes Database</legend>
+						<label className="form__label" htmlFor="title">
+							Title:
+						</label>
+						<div className="form__input-div">
+							<input
+								className="form__input"
+								id="title"
+								type="text"
+								value={this.state.title}
+								onChange={e => this.handleTitleChange(e)}
+							/>
+						</div>
+						<label className="form__label" htmlFor="category">
+							Category:
+						</label>
+						<div className="form__select-div">
+							<select
+								className="form__select"
+								id="category"
+								value={this.state.category}
+								onChange={e => this.handleCategoryChange(e)}
+							>
+								<option value="undefined">--Choose a Category--</option>
+								<CategoryOptions />
+							</select>
+						</div>
+						<label className="form__label" htmlFor="subCategory">
+							SubCategory:
+						</label>
+						<div className="form__select-div">
+							<select
+								className="form__select"
+								id="subCategory"
+								value={this.state.subCategory}
+								onChange={e => this.handleSubCategoryChange(e)}
+							>
+								<option value="undefined">--Choose a SubCategory--</option>
+								<SubCategoryOptions />
+							</select>
+						</div>
+						<label className="form__label" htmlFor="difficulty">
+							Difficulty:
+						</label>
+						<div className="form__select-div">
+							<select
+								className="form__select"
+								id="difficulty"
+								value={this.state.difficulty}
+								onChange={e => this.handleDifficultyChange(e)}
+							>
+								<option value="undefined">--Choose a Difficulty--</option>
+								<option value="Easy">Easy</option>
+								<option value="Medium">Medium</option>
+								<option value="Hard">Hard</option>
+								<option value="Pro Chef">Pro Chef</option>
+							</select>
+						</div>
+						<label className="form__label" htmlFor="sortBy">
+							Sort By:
+						</label>
+						<div className="form__select-div">
+							<select
+								className="form__select"
+								id="sortBy"
+								value={this.state.sortBy}
+								onChange={e => this.handleSortByChange(e)}
+							>
+								<option value="undefined">--Sort Results By--</option>
+								<option value="starRating">Star Rating</option>
+								<option value="totalTime">Total Time</option>
+								<option value="date">Date</option>
+							</select>
+						</div>
 						<div className="appBtnContainer">
 							<button className="appBtn" type="submit" value="Submit">
 								Search
