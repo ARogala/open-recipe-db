@@ -56,6 +56,13 @@ class Search extends React.Component {
 		this.props.savePage(1);
 	}
 
+	getAllRecipes() {
+		const skip = 0;
+		this.props.getFilteredRecipes('undefined', 'undefined', 'undefined', 'starRating', skip);
+		this.props.saveFilteredURL('undefined', 'undefined', 'undefined', 'starRating', skip);
+		this.props.savePage(1);
+	}
+
 	handleFormReset() {
 		this.setState({
 			category: 'undefined',
@@ -68,9 +75,14 @@ class Search extends React.Component {
 	render() {
 		return (
 			<div>
-				<button className="appBtn" type="button" onClick={() => this.props.getRandomRecipes()}>
-					Random Recipes
-				</button>
+				<div className="appBtnContainer" >
+					<button className="appBtn" type="button" onClick={() => this.props.getRandomRecipes()}>
+						Random Recipes
+					</button>
+					<button className="appBtn" type="button" onClick={() => this.getAllRecipes()}>
+						All Recipes
+					</button>
+				</div>
 				<form className="search" onSubmit={e => this.handleSubmit(e)}>
 					<fieldset>
 						<legend>Search Recipes Database</legend>
