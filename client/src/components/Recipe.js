@@ -52,9 +52,11 @@ class Recipe extends React.Component {
 			this.props.deleteRecipeRes.res.length === 1
 		) {
 			let recipes = this.props.recipes.recipes.all;
+			let count = this.props.recipes.recipes.count;
+			count = count - 1;
 			const id = this.props.match.params.id;
 			recipes = recipes.filter(recipe => recipe._id !== id);
-			this.props.updateRecipes({ all: recipes, count: recipes.length });
+			this.props.updateRecipes({ all: recipes, count: count });
 			this.props.updateRecipe();
 			this.notify();
 		}
