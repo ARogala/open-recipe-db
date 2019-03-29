@@ -21,6 +21,29 @@ class CreateEditRecipeForm extends React.Component {
 		};
 	}
 
+	//fill form with recipe if on edit page
+	componentDidUpdate(prevProps) {
+		const formState = this.props.formState;
+		if (formState !== prevProps.formState) {
+			this.setState({
+				contributor: formState.contributor,
+				date: formState.date,
+				title: formState.title,
+				category: formState.category,
+				subCategory: formState.subCategory,
+				rating: formState.rating,
+				difficulty: formState.difficulty,
+				prepHours: formState.prepHours,
+				prepMinutes: formState.prepMinutes,
+				cookHours: formState.cookHours,
+				cookMinutes: formState.cookMinutes,
+				ingredients: formState.ingredients,
+				instructions: formState.instructions,
+				notes: formState.notes
+			});
+		}
+	}
+
 	handleContributorChange(e) {
 		this.setState({
 			contributor: e.target.value
