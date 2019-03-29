@@ -32,9 +32,11 @@ class Results extends React.Component {
 	renderRecipeList = recipes => {
 		let recipesList = recipes.map((recipe, index) => {
 			return (
-				<li key={index}>
-					<Link to={`/recipe/${recipe._id}`}>{`Title: ${recipe.name}`}</Link>
-					<ul>
+				<li key={index} className="recipeList__recipeLI">
+					<div className="recipeList__link-div">
+						<Link className="recipeList__link" to={`/recipe/${recipe._id}`}>{`${recipe.name}`}</Link>
+					</div>
+					<ul className="recipeList__recipeUL">
 						<li>{`Contributor: ${recipe.contributor}`}</li>
 						<li>{`Category: ${recipe.category}`}</li>
 						<li>{`SubCategory: ${recipe.subCategory}`}</li>
@@ -61,7 +63,7 @@ class Results extends React.Component {
 			return (
 				<div>
 					<p>Total Results: {recipes.count}</p>
-					<ul>{this.renderRecipeList(recipes.all)}</ul>
+					<ul className="recipeList">{this.renderRecipeList(recipes.all)}</ul>
 					<Paginator />
 				</div>
 			);

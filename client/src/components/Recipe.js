@@ -95,10 +95,10 @@ class Recipe extends React.Component {
 			return <li key={index}>{ingredient}</li>;
 		});
 		let recipeDOM = (
-			<ul>
-				<li>
-					{`Title: ${recipe[0].name}`}
-					<ul>
+			<ul className="recipeList">
+				<li className="recipeList__recipeLI">
+					<p className="recipeList__title">{`${recipe[0].name}`}</p>
+					<ul className="recipeList__recipeUL">
 						<li>{`Contributor: ${recipe[0].contributor}`}</li>
 						<li>{`Category: ${recipe[0].category}`}</li>
 						<li>{`SubCategory: ${recipe[0].subCategory}`}</li>
@@ -114,18 +114,18 @@ class Recipe extends React.Component {
 							recipe[0].totalTime.minutes
 						} minutes`}</li>
 						<li>{`Date: ${formatMMDDYYYY(recipe[0].date)}`}</li>
-						<li>
-							Ingredients:
+						<li className="recipeList__ingredientsLI">
+							<p>Ingredients:</p>
 							<ul>{ingredients}</ul>
 						</li>
-						<li>
-							Instructions:
+						<li className="recipeList__instructionsLI">
+							<p className="recipeList__instructionsLI-p">Instructions:</p>
 							<ul>
 								<p>{recipe[0].instructions}</p>
 							</ul>
 						</li>
-						<li>
-							Notes:
+						<li className="recipeList__notesLI">
+							<p className="recipeList__notesLI-p">Notes:</p>
 							<ul>
 								<p>{recipe[0].notes}</p>
 							</ul>

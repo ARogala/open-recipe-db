@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+.recipeList {
+	list-style-position: inside;
+	list-style-type: none;
+
+	&__recipeLI {
+		max-width: 650px;
+		background: $grey;
+		margin: 10px auto 10px auto;
+		padding: 10px;
+		border-radius: $border-radius-xl;
+	}
+
+	&__link-div {
+		text-align: center;
+	}
+
+	&__link {
+		text-decoration: none;
+		color: blue;
+		font-weight: bold;
+		padding: 5px;
+		line-height: 10px;
+	}
+
+	&__link:hover {
+		color: black;
+		text-decoration: underline;
+	}
+
+	&__link:visited {
+		color: black;
+	}
+
+	&__link:focus {
+		color: black;
+		text-decoration: underline;
+		outline: none;
+	}
+
+	&__recipeUL {
+		list-style-type: disc;
+	}
+
+	
+
+	// for single recipe page
+	&__title {
+		text-align: center;
+		font-weight: bold;
+		padding: 10px;
+		line-height: 10px;
+	}
+
+	&__ingredientsLI {
+		list-style-type: none;
+	}
+
+	&__ingredientsLI p {
+		text-align: center;
+		font-weight: bold;
+		padding: 10px 5px 10px 0px;
+		line-height: 10px;
+	}
+
+	&__ingredientsLI ul {
+		list-style-type: disc;
+	}
+
+	&__instructionsLI {
+		list-style-type: none;
+	}
+
+	&__instructionsLI-p {
+		text-align: center;
+		font-weight: bold;
+		padding: 10px;
+		line-height: 10px;
+	}
+
+	&__notesLI {
+		list-style-type: none;
+	}
+
+	&__notesLI-p {
+		text-align: center;
+		font-weight: bold;
+		padding: 10px;
+		line-height: 10px;
+	}
+
+}
