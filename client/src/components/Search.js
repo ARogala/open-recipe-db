@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import CategoryOptions from './CategoryOptions';
+import SubCategoryOptions from './SubCategoryOptions';
 import { getFilteredRecipes, getRandomRecipes, saveFilteredURL, savePage } from '../redux/actions';
 
 class Search extends React.Component {
@@ -80,29 +82,7 @@ class Search extends React.Component {
 							onChange={e => this.handleCategoryChange(e)}
 						>
 							<option value="undefined">--Choose a Category--</option>
-							<option value="Appetizers">Appetizers</option>
-							<option value="Beverages">Beverages</option>
-							<option value="Sides">Sides</option>
-							<option value="Main Dishes">Main Dishes</option>
-							<option value="Breakfast">Breakfast</option>
-							<option value="Lunch">Lunch</option>
-							<option value="Brunch">Brunch</option>
-							<option value="Desserts">Desserts</option>
-							<option value="Breads">Breads</option>
-							<option value="Soups">Soups</option>
-							<option value="Stews & Chili">Stews & Chili</option>
-							<option value="Pasta, Sauces, & Noodles">Pasta, Sauces, & Noodles</option>
-							<option value="Salad & Dressings">Salad & Dressings</option>
-							<option value="Grilling">Grilling</option>
-							<option value="Smoked">Smoked</option>
-							<option value="Burgers">Burgers</option>
-							<option value="Sandwiches">Sandwiches</option>
-							<option value="Pizza">Pizza</option>
-							<option value="Slow & Pressure Cooker">Slow & Pressure Cooker</option>
-							<option value="Skillet & Stir-Fries">Skillet & Stir-Fries</option>
-							<option value="Oven Baked & Broiled">Oven Baked & Broiled</option>
-							<option value="Beans, Grains, & Rice">Beans, Grains, & Rice</option>
-							<option value="Casseroles">Casseroles</option>
+							<CategoryOptions />
 						</select>
 						<label htmlFor="subCategory">SubCategory:</label>
 						<select
@@ -112,27 +92,7 @@ class Search extends React.Component {
 							onChange={e => this.handleSubCategoryChange(e)}
 						>
 							<option value="undefined">--Choose a SubCategory--</option>
-							<option value="Diet">Diet</option>
-							<option value="Meatless & Vegan">Meatless & Vegan</option>
-							<option value="Slow & Pressure Cooker">Slow & Pressure Cooker</option>
-							<option value="Poultry">Poultry</option>
-							<option value="Beef">Beef</option>
-							<option value="Pork">Pork</option>
-							<option value="Lamb">Lamb</option>
-							<option value="Duck">Duck</option>
-							<option value="Turkey">Turkey</option>
-							<option value="Sausages">Sausages</option>
-							<option value="Seafood">Seafood</option>
-							<option value="Fruit">Fruit</option>
-							<option value="Vegetables">Vegetables</option>
-							<option value="Cookies & Biscuits">Cookies & Biscuits</option>
-							<option value="Cakes & Cupcakes">Cakes & Cupcakes</option>
-							<option value="Custards & Puddings">Custards & Puddings</option>
-							<option value="Pies, Tarts, Cobblers, & Crisp">Pies, Tarts, Cobblers, & Crisp</option>
-							<option value="Chocolates & Candies">Chocolates & Candies</option>
-							<option value="Pastries">Pastries</option>
-							<option value="Frozen">Frozen</option>
-							<option value="Other">Other</option>
+							<SubCategoryOptions />
 						</select>
 						<label htmlFor="difficulty">Difficulty:</label>
 						<select
