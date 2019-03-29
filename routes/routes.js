@@ -9,7 +9,7 @@ module.exports = app => {
 
 	app.get('/api/recipe/:id', RecipeController.getById);
 
-	app.get('/api/recipe/:category/:subCategory/:difficulty/:sortBy/:skip', RecipeController.getFiltered);
+	app.get('/api/recipe/:name/:category/:subCategory/:difficulty/:sortBy/:skip', RecipeController.getFiltered);
 
 	app.post('/api/recipe', RecipeController.create);
 

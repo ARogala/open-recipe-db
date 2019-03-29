@@ -54,6 +54,9 @@ module.exports = {
 function getConditions(params) {
 	let filterConditions = {};
 	let sortConditions = {};
+	if (params.name !== 'undefined') {
+		filterConditions.$text = { $search: params.name };
+	}
 	if (params.category !== 'undefined') {
 		filterConditions.category = params.category;
 	}
