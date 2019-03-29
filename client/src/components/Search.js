@@ -58,8 +58,8 @@ class Search extends React.Component {
 
 	getAllRecipes() {
 		const skip = 0;
-		this.props.getFilteredRecipes('undefined', 'undefined', 'undefined', 'starRating', skip);
-		this.props.saveFilteredURL('undefined', 'undefined', 'undefined', 'starRating', skip);
+		this.props.getFilteredRecipes('undefined', 'undefined', 'undefined', 'undefined', 'starRating', skip);
+		this.props.saveFilteredURL('undefined', 'undefined', 'undefined', 'undefined', 'starRating', skip);
 		this.props.savePage(1);
 	}
 
@@ -75,7 +75,7 @@ class Search extends React.Component {
 	render() {
 		return (
 			<div>
-				<div className="appBtnContainer" >
+				<div className="appBtnContainer">
 					<button className="appBtn" type="button" onClick={() => this.props.getRandomRecipes()}>
 						Random Recipes
 					</button>

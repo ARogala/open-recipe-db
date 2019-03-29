@@ -17,6 +17,7 @@ const initialState = {
 	recipes: { error: null, loaded: false, btnClicked: false, recipes: {} },
 	recipe: { error: null, loaded: false, recipe: [] },
 	filteredURL: {
+		title: 'undefined',
 		category: 'undefined',
 		subCategory: 'undefined',
 		difficulty: 'undefined',
@@ -116,6 +117,7 @@ export const filteredURL = (filteredURL = initialState.filteredURL, action) => {
 	switch (action.type) {
 		case SAVE_FILTERED_URL:
 			return {
+				title: action.payload.title,
 				category: action.payload.category,
 				subCategory: action.payload.subCategory,
 				difficulty: action.payload.difficulty,
