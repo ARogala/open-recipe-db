@@ -43,7 +43,7 @@ class Paginator extends React.Component {
 
 		if (pages === 1) {
 			return (
-				<p>
+				<p style={{textAlign: 'center'}}>
 					Page {page} of {pages}
 				</p>
 			);
