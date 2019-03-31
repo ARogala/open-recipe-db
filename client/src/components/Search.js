@@ -88,7 +88,10 @@ class Search extends React.Component {
 		return (
 			<div>
 				<div className="appBtnContainer">
-					<button className="appBtn" type="button" onClick={() => this.props.getRandomRecipes()}>
+					<button className="appBtn" type="button" onClick={() => {
+						this.props.getRandomRecipes();
+						this.props.savePage(1);
+					}}>
 						Random Recipes
 					</button>
 					<button className="appBtn" type="button" onClick={() => this.getAllRecipes()}>
