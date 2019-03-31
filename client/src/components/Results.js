@@ -61,14 +61,18 @@ class Results extends React.Component {
 			return this.renderLoader();
 		} else if (loaded === true && recipes.all) {
 			return (
-				<div>
-					<p>Total Results: {recipes.count}</p>
+				<div className="results">
+					<p className="results__p">Total Results: {recipes.count}</p>
 					<ul className="recipeList">{this.renderRecipeList(recipes.all)}</ul>
 					<Paginator />
 				</div>
 			);
 		} else {
-			return <div>Search the database or get some random recipes.</div>;
+			return (
+				<div className="results">
+					<p className="results__p">Search the database or get some random recipes.</p>
+				</div>
+			);
 		}
 	}
 }

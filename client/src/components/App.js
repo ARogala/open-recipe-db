@@ -38,7 +38,7 @@ class App extends Component {
                         path="/"
                         render={() => {
                             return (
-                                <div>
+                                <div className="App__home">
                                     <Search />
                                     <Results />
                                 </div>
