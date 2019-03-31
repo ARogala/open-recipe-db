@@ -4,6 +4,7 @@ import Loader from 'react-loader-spinner';
 import { confirmAlert } from 'react-confirm-alert';
 import { toast } from 'react-toastify';
 import { connect } from 'react-redux';
+import isEmpty from 'lodash/isEmpty';
 
 import { getRecipeById, deleteRecipe, updateRecipes, updateRecipe } from '../redux/actions';
 
@@ -46,17 +47,28 @@ class Recipe extends React.Component {
 	}
 
 	//update/remove recipes and recipe once after deleteRecipe success
+	//if user reloades page only remove recipe (recipes will be empty)
 	componentDidUpdate(prevProps) {
+		const deleteRecipeRes = this.props.deleteRecipeRes;
+		const recipesRes = this.props.recipes.recipes;
 		if (
-			this.props.deleteRecipeRes.loaded !== prevProps.deleteRecipeRes.loaded &&
-			this.props.deleteRecipeRes.res.length === 1
+			deleteRecipeRes.loaded !== prevProps.deleteRecipeRes.loaded &&
+			deleteRecipeRes.res.length === 1 &&
+			!isEmpty(recipesRes)
 		) {
-			let recipes = this.props.recipes.recipes.all;
-			let count = this.props.recipes.recipes.count;
+			let recipes = recipesRes.all;
+			let count = recipesRes.count;
 			count = count - 1;
 			const id = this.props.match.params.id;
 			recipes = recipes.filter(recipe => recipe._id !== id);
 			this.props.updateRecipes({ all: recipes, count: count });
+			this.props.updateRecipe();
+			this.notify();
+		} else if (
+			deleteRecipeRes.loaded !== prevProps.deleteRecipeRes.loaded &&
+			deleteRecipeRes.res.length === 1 &&
+			isEmpty(recipesRes)
+		) {
 			this.props.updateRecipe();
 			this.notify();
 		}
@@ -157,7 +169,9 @@ class Recipe extends React.Component {
 			return (
 				<div>
 					<div className="recipe">
-						<Link className="recipe__link" to={`/edit/${getRecipe[0]._id}`}>Edit Recipe</Link>
+						<Link className="recipe__link" to={`/edit/${getRecipe[0]._id}`}>
+							Edit Recipe
+						</Link>
 						<button className="appBtn" type="button" onClick={() => this.delete(getRecipe[0]._id)}>
 							Delete Recipe
 						</button>
@@ -169,7 +183,9 @@ class Recipe extends React.Component {
 			return (
 				<div className="recipe">
 					<p>Your recipe was successfully deleted.</p>
-					<Link className="recipe__link" to={`/`}>Back</Link>
+					<Link className="recipe__link" to={`/`}>
+						Back
+					</Link>
 				</div>
 			);
 		}
