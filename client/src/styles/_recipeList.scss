@@ -46,11 +46,15 @@
 	
 
 	// for single recipe page
+
+	&__recipeLI-single {
+		max-width: 800px;
+	}
+
 	&__title {
 		text-align: center;
 		font-weight: bold;
 		padding: 10px;
-		line-height: 10px;
 	}
 
 	&__ingredientsLI {

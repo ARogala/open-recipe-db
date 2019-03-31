@@ -96,7 +96,7 @@ class Recipe extends React.Component {
 		});
 		let recipeDOM = (
 			<ul className="recipeList">
-				<li className="recipeList__recipeLI">
+				<li className="recipeList__recipeLI recipeList__recipeLI-single">
 					<p className="recipeList__title">{`${recipe[0].name}`}</p>
 					<ul className="recipeList__recipeUL">
 						<li>{`Contributor: ${recipe[0].contributor}`}</li>
