@@ -3,8 +3,8 @@
 .form {
 	&__fieldset {
 		padding: 5px;
-		max-width: 450px;
-		margin: auto auto 10px auto;
+		max-width: 650px;
+		margin: 10px auto 10px auto;
 		border-radius: $border-radius-xl;
 	}
 
@@ -118,5 +118,73 @@
 	&__textarea:focus {
 		outline: none;
 		background: $grey;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+
+	.form {
+		&__fieldset {
+			max-width: none;
+		}
+
+		&__legend {
+			font-size: $huge-font-size;
+		}
+
+		&__label {
+			font-size: $huge-font-size;
+		}
+
+		&__select {
+			font-size: $huge-font-size;
+		}
+
+		&__input {
+			font-size: $huge-font-size;
+		}
+
+		&__textarea {
+			font-size: $huge-font-size;
+			height: 400px;
+		}
+	}
+
+	.flexContainer {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.flexBox1 {
+		width: 48%;
+		margin: 10px auto 10px auto;
+		padding: 10px;
+		border: 1px solid black;
+		border-radius: $border-radius-xl;
+	}
+
+	.flexBox2 {
+		width: 48%;
+		margin: auto;
+	}
+
+	.flexBox3 {
+		width: 48%;
+		margin: auto;
+	}
+
+	.flexBox4 {
+		width: 48%;
+		margin: auto;
+	}
+
+	.flexBox5 {
+		width: 80%;
+		margin: auto;
+	}
+
+	.flexBox6 {
+		width: 100%;
+		margin: auto;
 	}
 }
