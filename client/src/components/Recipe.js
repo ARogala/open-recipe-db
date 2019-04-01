@@ -82,7 +82,7 @@ class Recipe extends React.Component {
 
 	renderError = () => {
 		return (
-			<div className="recipe">
+			<div className="recipe" style={{textAlign: 'center'}}>
 				<p>
 					Sorry an error has occured. Perhaps we are cooking too much and went over the api limit! Slow down!
 				</p>
@@ -92,11 +92,9 @@ class Recipe extends React.Component {
 
 	renderLoader = () => {
 		return (
-			<div className="recipe">
-				<div className="recipe__loader">
-					<div>
-						<Loader type="Puff" color="#00BFFF" height="100" width="100" />
-					</div>
+			<div className="loader">
+				<div className="loader__div">
+					<Loader type="Puff" color="#00BFFF" height="100" width="100" />
 				</div>
 			</div>
 		);
@@ -167,8 +165,8 @@ class Recipe extends React.Component {
 			return this.renderLoader();
 		} else if (getRecipe.length === 1) {
 			return (
-				<div>
-					<div className="recipe">
+				<div className="recipe">
+					<div style={{textAlign: 'center'}}>
 						<Link className="recipe__link" to={`/edit/${getRecipe[0]._id}`}>
 							Edit Recipe
 						</Link>
@@ -181,7 +179,7 @@ class Recipe extends React.Component {
 			);
 		} else {
 			return (
-				<div className="recipe">
+				<div className="recipe" style={{textAlign: 'center'}}>
 					<p>Your recipe was successfully deleted.</p>
 					<Link className="recipe__link" to={`/`}>
 						Back
