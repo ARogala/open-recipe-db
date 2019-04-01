@@ -27,7 +27,7 @@
 	&__select-div {
 		margin: 5px auto 5px auto;
 		border: 1px solid black;
-		width: 280px;
+		width: 270px;
 		border-radius: $border-radius-xl;
 		overflow: hidden;
 		background: $background-color1 url("../images/arrow-dropdown.svg") no-repeat 90% 50%;
@@ -147,6 +147,18 @@
 		&__textarea {
 			font-size: $huge-font-size;
 			height: 400px;
+		}
+
+		&__select-div {
+			width: 310px;
+		}
+
+		&__input-div {
+			width: 310px;
+		}
+
+		&__ingredient-input-div {
+			width: 80%;
 		}
 	}
 
