@@ -29,6 +29,12 @@
 	}
 }
 
+@media screen and (max-width: 320px) {
+	.nav {
+		font-size: $big-font-size;
+	}
+}
+
 .header {
 	text-align: center;
 	border-bottom: 2px solid black;
