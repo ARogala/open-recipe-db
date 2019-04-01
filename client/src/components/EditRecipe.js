@@ -62,11 +62,9 @@ class EditRecipe extends React.Component {
 
 	renderLoader = () => {
 		return (
-			<div className="recipe">
-				<div className="recipe__loader">
-					<div>
-						<Loader type="Puff" color="#00BFFF" height="100" width="100" />
-					</div>
+			<div className="loader">
+				<div className="loader__div">
+					<Loader type="Puff" color="#00BFFF" height="100" width="100" />
 				</div>
 			</div>
 		);

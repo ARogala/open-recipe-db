@@ -19,12 +19,10 @@ class Results extends React.Component {
 	};
 	renderLoader = () => {
 		return (
-			<div className="recipe">
-				<div className="recipe__loader">
-					<div>
-						<p>Getting Recipes!</p>
-						<Loader type="Puff" color="#00BFFF" height="100" width="100" />
-					</div>
+			<div className="loader">
+				<p>Getting Recipes!</p>
+				<div className="loader__div">	
+					<Loader type="Puff" color="#00BFFF" height="100" width="100" />
 				</div>
 			</div>
 		);
