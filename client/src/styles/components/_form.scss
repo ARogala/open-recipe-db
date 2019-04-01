@@ -60,7 +60,7 @@
 	&__input-div {
 		margin: 5px auto 5px auto;
 		border: 1px solid black;
-		width: 280px;
+		width: 270px;
 		border-radius: $border-radius-xl;
 		overflow: hidden;
 		background: $background-color1;
@@ -96,6 +96,7 @@
 
 	&__ingredient-input-div {
 		margin: 5px 5px 5px auto;
+		width: 80%;
 	}
 
 	&__textarea {
