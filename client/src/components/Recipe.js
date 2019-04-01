@@ -9,6 +9,8 @@ import isEmpty from 'lodash/isEmpty';
 import { getRecipeById, deleteRecipe, updateRecipes, updateRecipe } from '../redux/actions';
 
 import { formatMMDDYYYY } from '../formatDate';
+
+import errorIcon from '../images/error.svg';
 /*
 	conditional rendering is complicated... however component logic is easy
 	1. component mounts get the recipe by id and display it
@@ -82,7 +84,8 @@ class Recipe extends React.Component {
 
 	renderError = () => {
 		return (
-			<div className="recipe" style={{textAlign: 'center'}}>
+			<div className="error">
+				<img className="error__img" src={errorIcon} alt="error" />
 				<p>
 					Sorry an error has occured. Perhaps we are cooking too much and went over the api limit! Slow down!
 				</p>
@@ -166,7 +169,7 @@ class Recipe extends React.Component {
 		} else if (getRecipe.length === 1) {
 			return (
 				<div className="recipe">
-					<div style={{textAlign: 'center'}}>
+					<div style={{ textAlign: 'center' }}>
 						<Link className="recipe__link" to={`/edit/${getRecipe[0]._id}`}>
 							Edit Recipe
 						</Link>
@@ -179,7 +182,7 @@ class Recipe extends React.Component {
 			);
 		} else {
 			return (
-				<div className="recipe" style={{textAlign: 'center'}}>
+				<div className="recipe" style={{ textAlign: 'center' }}>
 					<p>Your recipe was successfully deleted.</p>
 					<Link className="recipe__link" to={`/`}>
 						Back

@@ -8,6 +8,8 @@ import CreateEditRecipeForm from './CreateEditRecipeForm';
 import { getRecipeById, editRecipe } from '../redux/actions';
 import { formatYYYYMMDD } from '../formatDate';
 
+import errorIcon from '../images/error.svg';
+
 class EditRecipe extends React.Component {
 	constructor(props) {
 		super(props);
@@ -31,28 +33,31 @@ class EditRecipe extends React.Component {
 	componentDidUpdate(prevProps) {
 		const { recipe } = this.props.recipe;
 		if (this.props.recipe.loaded !== prevProps.recipe.loaded && this.props.recipe.recipe.length === 1) {
-			this.setState({formState: {
-				contributor: recipe[0].contributor,
-				date: formatYYYYMMDD(recipe[0].date),
-				title: recipe[0].name,
-				category: recipe[0].category,
-				subCategory: recipe[0].subCategory,
-				rating: recipe[0].starRating,
-				difficulty: recipe[0].difficulty,
-				prepHours: recipe[0].prepTime.hours,
-				prepMinutes: recipe[0].prepTime.minutes,
-				cookHours: recipe[0].cookTime.hours,
-				cookMinutes: recipe[0].cookTime.minutes,
-				ingredients: recipe[0].ingredients,
-				instructions: recipe[0].instructions,
-				notes: recipe[0].notes
-			}});
+			this.setState({
+				formState: {
+					contributor: recipe[0].contributor,
+					date: formatYYYYMMDD(recipe[0].date),
+					title: recipe[0].name,
+					category: recipe[0].category,
+					subCategory: recipe[0].subCategory,
+					rating: recipe[0].starRating,
+					difficulty: recipe[0].difficulty,
+					prepHours: recipe[0].prepTime.hours,
+					prepMinutes: recipe[0].prepTime.minutes,
+					cookHours: recipe[0].cookTime.hours,
+					cookMinutes: recipe[0].cookTime.minutes,
+					ingredients: recipe[0].ingredients,
+					instructions: recipe[0].instructions,
+					notes: recipe[0].notes
+				}
+			});
 		}
 	}
 
 	renderError = () => {
 		return (
-			<div className="recipe">
+			<div className="error">
+				<img className="error__img" src={errorIcon} alt="error" />
 				<p>
 					Sorry an error has occured. Perhaps we are cooking too much and went over the api limit! Slow down!
 				</p>
@@ -78,7 +83,7 @@ class EditRecipe extends React.Component {
 
 	passRecipe(recipe) {
 		const id = this.props.match.params.id;
-		
+
 		this.props.editRecipe(recipe, id);
 
 		let count = this.state.toastCount;
@@ -112,11 +117,11 @@ class EditRecipe extends React.Component {
 			);
 		} else {
 			return (
-				<CreateEditRecipeForm 
-					passRecipe={(recipe) => this.passRecipe(recipe)}
+				<CreateEditRecipeForm
+					passRecipe={recipe => this.passRecipe(recipe)}
 					formState={this.state.formState}
-					legendText='Edit recipe'
-					buttonText='Update Recipe'
+					legendText="Edit recipe"
+					buttonText="Update Recipe"
 				/>
 			);
 		}

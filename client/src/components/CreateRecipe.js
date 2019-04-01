@@ -8,6 +8,8 @@ import CreateEditRecipeForm from './CreateEditRecipeForm';
 
 import { postRecipe } from '../redux/actions';
 
+import errorIcon from '../images/error.svg';
+
 class CreateRecipe extends React.Component {
 	constructor(props) {
 		super(props);
@@ -21,14 +23,15 @@ class CreateRecipe extends React.Component {
 
 	renderError = () => {
 		return (
-			<div className="recipe">
+			<div className="error">
+				<img className="error__img" src={errorIcon} alt="error" />
 				<p>
 					Sorry an error has occured. Perhaps we are cooking too much and went over the api limit! Slow down!
 				</p>
 			</div>
 		);
 	};
-	
+
 	renderLoader = () => {
 		return (
 			<div className="loader">
@@ -59,6 +62,7 @@ class CreateRecipe extends React.Component {
 		const { error, loaded, btnClicked, res } = this.props.postRecipeRes;
 		//console.log(res);
 		//api will send an error obj on res if server error occurs
+
 		if (error || res.error) {
 			return this.renderError();
 		} else if (loaded === false && btnClicked === true) {
@@ -74,9 +78,9 @@ class CreateRecipe extends React.Component {
 		} else {
 			return (
 				<CreateEditRecipeForm
-					passRecipe={(recipe) => this.passRecipe(recipe)}
-					legendText='Add a new recipe'
-					buttonText='Upload Recipe'
+					passRecipe={recipe => this.passRecipe(recipe)}
+					legendText="Add a new recipe"
+					buttonText="Upload Recipe"
 				/>
 			);
 		}

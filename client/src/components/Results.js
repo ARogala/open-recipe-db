@@ -7,10 +7,13 @@ import Paginator from './Paginator';
 
 import { formatMMDDYYYY } from '../formatDate';
 
+import errorIcon from '../images/error.svg';
+
 class Results extends React.Component {
 	renderError = () => {
 		return (
-			<div className="recipe">
+			<div className="error">
+				<img className="error__img" src={errorIcon} alt="error" />
 				<p>
 					Sorry an error has occured. Perhaps we are cooking too much and went over the api limit! Slow down!
 				</p>
@@ -21,7 +24,7 @@ class Results extends React.Component {
 		return (
 			<div className="loader">
 				<p>Getting Recipes!</p>
-				<div className="loader__div">	
+				<div className="loader__div">
 					<Loader type="Puff" color="#00BFFF" height="100" width="100" />
 				</div>
 			</div>
