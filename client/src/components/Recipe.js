@@ -169,8 +169,8 @@ class Recipe extends React.Component {
 		} else if (getRecipe.length === 1) {
 			return (
 				<div className="recipe">
-					<div style={{ textAlign: 'center' }}>
-						<Link className="recipe__link" to={`/edit/${getRecipe[0]._id}`}>
+					<div className="appLinkContainer">
+						<Link className="appLink" to={`/edit/${getRecipe[0]._id}`}>
 							Edit Recipe
 						</Link>
 						<button className="appBtn" type="button" onClick={() => this.delete(getRecipe[0]._id)}>
@@ -182,9 +182,9 @@ class Recipe extends React.Component {
 			);
 		} else {
 			return (
-				<div className="recipe" style={{ textAlign: 'center' }}>
+				<div className="recipe appLinkContainer">
 					<p>Your recipe was successfully deleted.</p>
-					<Link className="recipe__link" to={`/`}>
+					<Link className="appLink" to={`/`}>
 						Back
 					</Link>
 				</div>

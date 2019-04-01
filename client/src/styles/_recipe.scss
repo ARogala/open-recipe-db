@@ -2,23 +2,4 @@
 
 .recipe {
 	margin-top: 10px;
-
-	&__link {
-		text-decoration: none;
-		color: blue;
-		font-weight: bold;
-		padding: 5px;
-		line-height: 10px;
-	}
-
-	&__link:hover {
-		color: black;
-		text-decoration: underline;
-	}
-
-	&__link:focus {
-		color: black;
-		text-decoration: underline;
-		outline: none;
-	}
 }

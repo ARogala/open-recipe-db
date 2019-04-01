@@ -34,8 +34,8 @@ class Results extends React.Component {
 		let recipesList = recipes.map((recipe, index) => {
 			return (
 				<li key={index} className="recipeList__recipeLI">
-					<div className="recipeList__link-div">
-						<Link className="recipeList__link" to={`/recipe/${recipe._id}`}>{`${recipe.name}`}</Link>
+					<div className="appLinkContainer">
+						<Link className="appLink appLinkVisited" to={`/recipe/${recipe._id}`}>{`${recipe.name}`}</Link>
 					</div>
 					<ul className="recipeList__recipeUL">
 						<li>{`Contributor: ${recipe.contributor}`}</li>

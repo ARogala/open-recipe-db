@@ -12,41 +12,11 @@
 		border-radius: $border-radius-xl;
 	}
 
-	&__link-div {
-		text-align: center;
-	}
-
-	&__link {
-		text-decoration: none;
-		color: blue;
-		font-weight: bold;
-		padding: 5px;
-		line-height: 10px;
-	}
-
-	&__link:hover {
-		color: black;
-		text-decoration: underline;
-	}
-
-	&__link:visited {
-		color: black;
-	}
-
-	&__link:focus {
-		color: black;
-		text-decoration: underline;
-		outline: none;
-	}
-
 	&__recipeUL {
 		list-style-type: disc;
 	}
 
-	
-
 	// for single recipe page
-
 	&__recipeLI-single {
 		max-width: 800px;
 	}

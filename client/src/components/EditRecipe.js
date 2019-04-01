@@ -109,10 +109,10 @@ class EditRecipe extends React.Component {
 			return this.renderLoader();
 		} else if (res.length === 1 && this.state.toastCount === 1) {
 			return (
-				<div>
+				<div className="appLinkContainer">
 					{this.notify()}
 					<p>View updated recipe.</p>
-					<Link to={`/recipe/${res[0]._id}`}>{`Title: ${res[0].name}`}</Link>
+					<Link className="appLink" to={`/recipe/${res[0]._id}`}>{`${res[0].name}`}</Link>
 				</div>
 			);
 		} else {

@@ -29,6 +29,35 @@
 	}
 }
 
+.appLinkContainer {
+	text-align: center;
+}
+
+.appLink {
+	text-decoration: none;
+	color: blue;
+	font-weight: bold;
+	padding: 5px;
+	line-height: 10px;
+
+	&:hover {
+		color: black;
+		text-decoration: underline;
+	}
+
+	&:focus {
+		color: black;
+		text-decoration: underline;
+		outline: none;
+	}
+}
+// Only want visited on certian links
+.appLinkVisited {
+	&:visited {
+		color: black;
+	}
+}
+
 // button styles for all app buttons. I know think components not inheritance
 // but this is too easy
 .appBtnContainer {
