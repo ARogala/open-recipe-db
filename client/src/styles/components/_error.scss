@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+.error {
+	text-align: center;
+	margin: auto;
+	padding: 20px 10px 10px 10px;
+
+	&__img {
+		width: 100px;
+		height: 100px;
+	}
+}

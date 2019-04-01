@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+.appLinkContainer {
+	text-align: center;
+}
+
+.appLink {
+	text-decoration: none;
+	color: blue;
+	font-weight: bold;
+	padding: 5px;
+	line-height: 10px;
+
+	&:hover {
+		color: black;
+		text-decoration: underline;
+	}
+
+	&:focus {
+		color: black;
+		text-decoration: underline;
+		outline: none;
+	}
+}
+// Only want visited on certian links
+.appLinkVisited {
+	&:visited {
+		color: black;
+	}
+}

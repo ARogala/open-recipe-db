@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+// button styles for all app buttons. I know think components not inheritance
+// but this is too easy
+.appBtnContainer {
+	text-align: center;
+	margin: 5px;
+}
+
+.appBtn {
+	background-color: #03A9F4; /* light blue */
+	border: none;
+	border-radius: $border-radius-xl;
+	color: white;
+	padding: 15px 32px;
+	margin: 5px;
+	font-size: $huge-font-size;
+	font-family: $font-family;
+}
+
+// remove ingredient btn
+.ingredientBtn {
+	margin: 5px auto 5px 5px;
+	padding: 3px 20px;
+}
+
+.appBtn:focus {
+	outline: 2px solid blue;
+}
+
+.appBtn:hover {
+	cursor: pointer;
+	transform: scale(1.05);
+}

@@ -3,10 +3,17 @@
 @import 'variables';
 @import 'base';
 @import 'app';
-@import 'form';
-@import 'recipeList';
 @import 'results';
 @import 'recipe';
+
+@import './components/form';
+@import './components/recipeList';
+@import './components/loader';
+@import './components/error';
+@import './components/link';
+@import './components/button';
+
+
 
 
 
