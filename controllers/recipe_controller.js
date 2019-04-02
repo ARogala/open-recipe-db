@@ -1,13 +1,6 @@
 const Recipe = require('../models/recipe');
 
 module.exports = {
-	getAll: function(req, res, next) {
-		const query = Recipe.find({}).sort({ starRating: -1 });
-
-		Promise.all([query, Recipe.find({}).countDocuments()])
-			.then(results => res.send({ all: results[0], count: results[1] }))
-			.catch(next);
-	},
 	getById: function(req, res, next) {
 		Recipe.find({ _id: req.params.id })
 			.then(recipe => res.send(recipe))
