@@ -43,10 +43,12 @@ class Paginator extends React.Component {
 
 		if (pages === 1) {
 			return (
-				<p style={{textAlign: 'center'}}>
+				<p style={{ textAlign: 'center' }}>
 					Page {page} of {pages}
 				</p>
 			);
+		} else if (pages === 0) {
+			return null;
 		} else if (page === 1) {
 			return (
 				<div className="appBtnContainer">
