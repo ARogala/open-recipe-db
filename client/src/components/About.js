@@ -24,6 +24,11 @@ const About = () => {
 				make database backups so all won’t be lost should someone decide to randomly delete a ton of recipes.
 				The app is easy to use so click around and add some of your favorite recipes. Enjoy!!
 			</p>
+			<br />
+			<p>
+				Note: When you create a recipe HTML can be added to the instructions and notes section of the app. This way line breaks and lists
+				can be added to the instructions and notes!
+			</p>
 		</div>
 	);
 };

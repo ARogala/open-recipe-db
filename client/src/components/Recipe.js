@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import { connect } from 'react-redux';
 import isEmpty from 'lodash/isEmpty';
 import NoSleep from 'nosleep.js';
+import parse from 'html-react-parser';
 
 import { getRecipeById, deleteRecipe, updateRecipes, updateRecipe } from '../redux/actions';
 
@@ -168,13 +169,13 @@ class Recipe extends React.Component {
 						<li className="recipeList__instructionsLI">
 							<p className="recipeList__instructionsLI-p">Instructions:</p>
 							<ul>
-								<p>{recipe[0].instructions}</p>
+								<p>{parse(recipe[0].instructions)}</p>
 							</ul>
 						</li>
 						<li className="recipeList__notesLI">
 							<p className="recipeList__notesLI-p">Notes:</p>
 							<ul>
-								<p>{recipe[0].notes}</p>
+								<p>{parse(recipe[0].notes)}</p>
 							</ul>
 						</li>
 					</ul>
