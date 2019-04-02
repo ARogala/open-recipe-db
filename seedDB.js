@@ -136,6 +136,7 @@ const subCategory = [
 	'Seafood',
 	'Fruit',
 	'Vegetables',
+	'Brownies',
 	'Cookies & Biscuits',
 	'Cakes & Cupcakes',
 	'Custards & Puddings',

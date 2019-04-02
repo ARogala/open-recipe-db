@@ -16,6 +16,7 @@ const SubCategoryOptions = () => {
 			<option value="Seafood">Seafood</option>
 			<option value="Fruit">Fruit</option>
 			<option value="Vegetables">Vegetables</option>
+			<option value="Brownies">Brownies</option>
 			<option value="Cookies & Biscuits">Cookies & Biscuits</option>
 			<option value="Cakes & Cupcakes">Cakes & Cupcakes</option>
 			<option value="Custards & Puddings">Custards & Puddings</option>
