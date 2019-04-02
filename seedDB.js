@@ -1,8 +1,10 @@
 const faker = require('faker');
 const mongoose = require('mongoose');
 const Recipe = require('./models/recipe');
+const keys = require('./config/keys');
 
-mongoose.connect('mongodb://localhost:27017/recipe', { useNewUrlParser: true });
+// mongodb://localhost:27017/recipe
+mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 mongoose.set('useFindAndModify', false);
 mongoose.connection
 	.once('open', () => {
