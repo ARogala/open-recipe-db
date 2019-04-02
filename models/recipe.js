@@ -67,13 +67,13 @@ const RecipeSchema = new Schema({
 		hours: {
 			type: Number,
 			min: 0,
-			max: 24,
+			max: 50,
 			required: true
 		},
 		minutes: {
 			type: Number,
 			min: 0,
-			max: 60,
+			max: 120,
 			required: true
 		}
 	},
