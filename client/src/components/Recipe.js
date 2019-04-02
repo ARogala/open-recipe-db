@@ -5,12 +5,14 @@ import { confirmAlert } from 'react-confirm-alert';
 import { toast } from 'react-toastify';
 import { connect } from 'react-redux';
 import isEmpty from 'lodash/isEmpty';
+import NoSleep from 'nosleep.js';
 
 import { getRecipeById, deleteRecipe, updateRecipes, updateRecipe } from '../redux/actions';
 
 import { formatMMDDYYYY } from '../formatDate';
 
 import errorIcon from '../images/error.svg';
+const noSleep = new NoSleep();
 /*
 	conditional rendering is complicated... however component logic is easy
 	1. component mounts get the recipe by id and display it
@@ -22,11 +24,43 @@ import errorIcon from '../images/error.svg';
 	3. conditionaly render this pages state 
 */
 class Recipe extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			onOff: 'off'
+		};
+	}
+
 	componentDidMount() {
 		//get id parameter from url and fetch recipe from api
 		const id = this.props.match.params.id;
 		this.props.getRecipeById(id);
 	}
+
+	sleepOnOff() {
+		const onOff = this.state.onOff;
+		if (onOff === 'off') {
+			noSleep.enable();
+			this.setState({ onOff: 'on' });
+			this.notifySleepOn();
+		} else if (onOff === 'on') {
+			noSleep.disable();
+			this.setState({ onOff: 'off' });
+			this.notifySleepOff();
+		}
+	}
+
+	notifySleepOn = () => {
+		toast.success('Ok your sceen will remain on while you cook this recipe.', {
+			position: toast.POSITION.TOP_CENTER
+		});
+	};
+
+	notifySleepOff = () => {
+		toast.success('Ok your sceen will shut off as normal now.', {
+			position: toast.POSITION.TOP_CENTER
+		});
+	};
 
 	delete(id) {
 		confirmAlert({
@@ -173,9 +207,15 @@ class Recipe extends React.Component {
 						<Link className="appLink" to={`/edit/${getRecipe[0]._id}`}>
 							Edit Recipe
 						</Link>
+					</div>
+					<div className="appBtnContainer">
 						<button className="appBtn" type="button" onClick={() => this.delete(getRecipe[0]._id)}>
 							Delete Recipe
 						</button>
+						<button className="appBtn" type="button" onClick={() => this.sleepOnOff()}>
+							No Sleep
+						</button>
+						<p>Tip: Click No Sleep to keep your sceen on while cooking.</p>
 					</div>
 					{this.renderRecipe(getRecipe)}
 				</div>
