@@ -1,5 +1,12 @@
 const Recipe = require('../models/recipe');
-
+/* the response for each endpoint has the following form
+getById     	[{}]
+getRandom       { all: [{},{},{}], count: 20 }
+getFiltered		{ all: [{},{},{}], count: 20 }
+create			[{}]
+edit			[{}]
+delete			[{ msg: 'delete successful' }]
+*/
 module.exports = {
 	getById: function(req, res, next) {
 		Recipe.find({ _id: req.params.id })
@@ -7,8 +14,8 @@ module.exports = {
 			.catch(next);
 	},
 	getRandom: function(req, res, next) {
-		Recipe.aggregate([{ $sample: { size: 10 } }])
-			.then(recipes => res.send({ all: recipes, count: 10 }))
+		Recipe.aggregate([{ $sample: { size: 20 } }])
+			.then(recipes => res.send({ all: recipes, count: recipes.length }))
 			.catch(next);
 	},
 	getFiltered: function(req, res, next) {
