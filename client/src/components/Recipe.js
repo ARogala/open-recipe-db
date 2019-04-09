@@ -45,9 +45,26 @@ class Recipe extends React.Component {
 			this.setState({ onOff: 'on' });
 			this.notifySleepOn();
 		} else if (onOff === 'on') {
-			noSleep.disable();
-			this.setState({ onOff: 'off' });
-			this.notifySleepOff();
+			confirmAlert({
+				title: 'Turn No Sleep off?',
+				message: 'Are you sure you want to turn No Sleep off? This action will clear your timer!!',
+				buttons: [
+					{
+						label: 'Yes turn off.',
+						onClick: () => {
+							noSleep.disable();
+							this.setState({ onOff: 'off' });
+							this.notifySleepOff();
+						}
+					},
+					{
+						label: 'No',
+						onClick: () => {
+							return;
+						}
+					}
+				]
+			});
 		}
 	}
 
