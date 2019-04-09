@@ -19,6 +19,12 @@ class Timer extends React.Component {
 		};
 	}
 
+	componentWillUnmount() {
+		clearInterval(this.state.intervalID);
+		clearInterval(this.state.soundIntervalID);
+		this.state.audio.load();
+	}
+
 	handleInputHoursChange(e) {
 		this.setState({ hours: e.target.value });
 	}
