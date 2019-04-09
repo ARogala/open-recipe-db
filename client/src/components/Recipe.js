@@ -216,8 +216,10 @@ class Recipe extends React.Component {
 						<button className="appBtn" type="button" onClick={() => this.sleepOnOff()}>
 							No Sleep
 						</button>
-						<p>Tip: Click No Sleep to keep your sceen on while cooking.</p>
-						{this.state.onOff === 'on' ? <Timer />:null}	
+						{this.state.onOff === 'off' ? (
+							<p>Tip: Click No Sleep to keep your sceen on while cooking and reveal a simple timer.</p>
+						) : null}
+						{this.state.onOff === 'on' ? <Timer /> : null}
 					</div>
 					{this.renderRecipe(getRecipe)}
 				</div>
