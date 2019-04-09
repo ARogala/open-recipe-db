@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import isEmpty from 'lodash/isEmpty';
 import NoSleep from 'nosleep.js';
 import parse from 'html-react-parser';
-
+import Timer from './Timer/Timer';
 import { getRecipeById, deleteRecipe, updateRecipes, updateRecipe } from '../redux/actions';
 
 import { formatMMDDYYYY } from '../formatDate';
@@ -217,6 +217,7 @@ class Recipe extends React.Component {
 							No Sleep
 						</button>
 						<p>Tip: Click No Sleep to keep your sceen on while cooking.</p>
+						{this.state.onOff === 'on' ? <Timer />:null}	
 					</div>
 					{this.renderRecipe(getRecipe)}
 				</div>
